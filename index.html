@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自然数 · 数的起源</title>
+<style>
+  :root {
+    --parchment: #f8f2e4;
+    --parchment-dark: #ede4d3;
+    --ink: #2c2416;
+    --ink-light: #5c4a2e;
+    --accent: #8b4513;
+    --accent-soft: #c4956a;
+    --rule: #c4b99a;
+    --highlight: #e8d5b7;
+    --note-bg: #fdf8f0;
+    --shadow: rgba(44,36,22,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  @font-face {
+    font-family: 'Manuscript';
+    src: local('Georgia'), local('Noto Serif SC'), local('STSong'), local('SimSun');
+  }
+  
+  body {
+    background: #e8e0d3;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(139,69,19,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(139,69,19,0.04) 0%, transparent 50%);
+    font-family: 'Manuscript', Georgia, 'Noto Serif SC', 'STSong', 'SimSun', serif;
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 18px;
+    min-height: 100vh;
+  }
+
+  /* ── Page Container ── */
+  .manuscript {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+    background: var(--parchment);
+    background-image:
+      repeating-linear-gradient(
+        transparent, transparent 27px,
+        rgba(180,160,130,0.15) 27px, rgba(180,160,130,0.15) 28px
+      );
+    box-shadow: 
+      0 2px 20px var(--shadow),
+      0 0 0 1px rgba(139,69,19,0.06);
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid var(--rule);
+    position: relative;
+  }
+  .page-header::after {
+    content: '✦';
+    position: absolute;
+    bottom: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--parchment);
+    padding: 0 16px;
+    color: var(--accent);
+    font-size: 20px;
+  }
+  .chapter-num {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent-soft);
+    margin-bottom: 12px;
+  }
+  .page-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    font-family: 'Manuscript', 'Noto Serif SC', serif;
+  }
+  .page-subtitle {
+    font-size: 19px;
+    color: var(--ink-light);
+    font-style: italic;
+    letter-spacing: 2px;
+  }
+
+  /* ── Section Headings ── */
+  .section {
+    margin: 48px 0;
+    position: relative;
+  }
+  .section-num {
+    position: absolute;
+    left: -72px;
+    top: 4px;
+    font-size: 13px;
+    color: var(--accent-soft);
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+  .section h2 {
+    font-size: 26px;
+    color: var(--ink);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .section h3 {
+    font-size: 20px;
+    color: var(--accent);
+    margin: 24px 0 12px;
+    font-weight: 600;
+  }
+
+  /* ── Text Styles ── */
+  p { margin-bottom: 16px; text-indent: 2em; }
+  p.no-indent { text-indent: 0; }
+  
+  .drop-cap::first-letter {
+    float: left;
+    font-size: 72px;
+    line-height: 0.75;
+    padding-right: 8px;
+    padding-top: 6px;
+    color: var(--accent);
+    font-weight: 700;
+    font-family: 'Manuscript', Georgia, serif;
+  }
+
+  .big-question {
+    background: var(--highlight);
+    border-left: 4px solid var(--accent);
+    padding: 24px 28px;
+    margin: 28px 0;
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--ink);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    text-indent: 0;
+    position: relative;
+  }
+  .big-question::before {
+    content: '🤔';
+    position: absolute;
+    top: -14px;
+    left: 16px;
+    background: var(--parchment);
+    padding: 0 6px;
+    font-style: normal;
+  }
+
+  /* ── Marginal Notes ── */
+  .margin-note {
+    position: absolute;
+    right: -180px;
+    width: 150px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-light);
+    font-style: italic;
+    padding: 12px;
+    border-left: 2px solid var(--accent-soft);
+    background: var(--note-bg);
+    border-radius: 0 6px 6px 0;
+  }
+  .margin-note strong {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    display: flex;
+    gap: 0;
+    margin: 32px 0;
+    overflow-x: auto;
+    padding: 20px 0;
+    position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-soft) transparent;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 52px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--rule);
+    z-index: 0;
+  }
+  .timeline-item {
+    flex: 0 0 140px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    cursor: default;
+    transition: transform 0.2s;
+  }
+  .timeline-item:hover { transform: translateY(-4px); }
+  .timeline-dot {
+    width: 14px; height: 14px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    border: 3px solid var(--parchment);
+    box-shadow: 0 0 0 2px var(--accent);
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-year {
+    font-size: 13px;
+    color: var(--accent-soft);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .timeline-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .timeline-desc {
+    font-size: 11px;
+    color: var(--ink-light);
+    line-height: 1.4;
+  }
+
+  /* ── Axiom Cards ── */
+  .axiom-list {
+    display: grid;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .axiom-card {
+    background: var(--note-bg);
+    border: 1px solid var(--rule);
+    padding: 18px 22px;
+    border-radius: 6px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: all 0.25s;
+    cursor: default;
+  }
+  .axiom-card:hover {
+    border-color: var(--accent-soft);
+    box-shadow: 0 4px 12px var(--shadow);
+    transform: translateX(4px);
+  }
+  .axiom-num {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 40px;
+    text-align: center;
+  }
+  .axiom-text strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .axiom-text span {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+
+  /* ── People Cards ── */
+  .people-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  .person-card {
+    background: var(--note-bg);
+    border: 1px solid var(--rule);
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.25s;
+  }
+  .person-card:hover {
+    border-color: var(--accent-soft);
+    box-shadow: 0 6px 16px var(--shadow);
+  }
+  .person-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--parchment);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .person-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .person-era {
+    font-size: 12px;
+    color: var(--accent-soft);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .person-story {
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.6;
+    text-indent: 0;
+  }
+
+  /* ── Relation Diagram ── */
+  .relation-map {
+    background: var(--note-bg);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 32px 24px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .rel-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+  }
+  .rel-box {
+    padding: 10px 20px;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--parchment);
+    transition: all 0.2s;
+  }
+  .rel-box.highlight {
+    background: var(--accent);
+    color: var(--parchment);
+    border-color: var(--accent);
+  }
+  .rel-arrow {
+    font-size: 20px;
+    color: var(--accent-soft);
+    font-weight: 700;
+  }
+
+  /* ── Interactive Try-It ── */
+  .try-section {
+    background: var(--note-bg);
+    border: 1px dashed var(--accent-soft);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 28px 0;
+  }
+  .try-section h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .try-section h3::before { content: '✋'; }
+
+  /* Clay Tablet */
+  .clay-tablet {
+    background: #d4b896;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .clay-tablet canvas {
+    background: #c9a87c;
+    border-radius: 4px;
+    cursor: crosshair;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.2);
+    touch-action: none;
+    max-width: 100%;
+  }
+  .clay-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .clay-controls button {
+    padding: 6px 16px;
+    background: var(--accent);
+    color: var(--parchment);
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.2s;
+  }
+  .clay-controls button:hover { opacity: 0.85; }
+  .clay-controls button.clear-btn {
+    background: transparent;
+    color: var(--ink-light);
+    border: 1px solid var(--rule);
+  }
+
+  /* Zero Question */
+  .quiz-block {
+    margin: 20px 0;
+  }
+  .quiz-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .quiz-option {
+    padding: 10px 20px;
+    border: 2px solid var(--rule);
+    border-radius: 6px;
+    background: var(--parchment);
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .quiz-option:hover { border-color: var(--accent-soft); }
+  .quiz-option.correct {
+    border-color: #4a7c59;
+    background: #e8f0e3;
+    color: #2d4a35;
+  }
+  .quiz-option.wrong {
+    border-color: #c44;
+    background: #fce8e8;
+    color: #a33;
+  }
+  .quiz-reveal {
+    display: none;
+    margin-top: 12px;
+    padding: 16px;
+    background: #e8f0e3;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #2d4a35;
+  }
+  .quiz-reveal.show { display: block; }
+
+  /* Hilbert Hotel */
+  .hotel-demo {
+    background: #f0ebe0;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .hotel-rooms {
+    display: flex;
+    gap: 6px;
+    margin: 16px 0;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 56px;
+  }
+  .hotel-room {
+    width: 48px; height: 48px;
+    border: 2px solid var(--rule);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--parchment);
+    transition: all 0.3s;
+  }
+  .hotel-room.occupied {
+    background: var(--accent);
+    color: var(--parchment);
+    border-color: var(--accent);
+  }
+  .hotel-room.moving {
+    animation: roomShift 0.5s ease;
+  }
+  @keyframes roomShift {
+    50% { transform: translateY(-8px); background: var(--accent-soft); }
+  }
+  .hotel-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hotel-controls button {
+    padding: 8px 18px;
+    background: var(--accent);
+    color: var(--parchment);
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.2s;
+  }
+  .hotel-controls button:hover { opacity: 0.85; }
+  .hotel-status {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  /* ── Further Reading ── */
+  .further-item {
+    background: var(--note-bg);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .further-item:hover { border-color: var(--accent-soft); }
+  .further-item summary {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+  }
+  .further-item summary::-webkit-details-marker { display: none; }
+  .further-item summary::before { content: '📜 '; }
+  .further-item[open] summary::before { content: '📖 '; }
+  .further-content {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    font-size: 15px;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+
+  /* ── Footer ── */
+  .page-footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 2px solid var(--rule);
+    position: relative;
+  }
+  .page-footer::before {
+    content: '❧';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--parchment);
+    padding: 0 12px;
+    color: var(--accent-soft);
+    font-size: 22px;
+  }
+  .page-footer p {
+    font-size: 14px;
+    color: var(--ink-light);
+    text-indent: 0;
+    margin-bottom: 4px;
+  }
+  .page-footer .nav-hint {
+    margin-top: 16px;
+    font-style: italic;
+    color: var(--accent-soft);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .margin-note { display: none; }
+    .section-num { position: static; display: block; margin-bottom: 4px; }
+  }
+  @media (max-width: 640px) {
+    .manuscript { padding: 32px 18px; }
+    .page-title { font-size: 28px; letter-spacing: 2px; }
+    .section h2 { font-size: 21px; }
+    .people-grid { grid-template-columns: 1fr; }
+    .big-question { font-size: 17px; padding: 16px 18px; }
+    .rel-box { font-size: 13px; padding: 8px 14px; }
+    p { text-indent: 0; }
+    .drop-cap::first-letter { font-size: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="manuscript">
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header class="page-header">
+  <div class="chapter-num">第一章</div>
+  <h1 class="page-title">自然数</h1>
+  <p class="page-subtitle">—— 人类最古老的发明，也是最深的谜</p>
+</header>
+
+<!-- ═══════════ §1 钩子 ═══════════ -->
+<section class="section" id="hook">
+  <span class="section-num">§1</span>
+  <h2>钩子</h2>
+  
+  <div class="big-question drop-cap">
+    如果世界上从来没有数字——没有 1、2、3，没有加减乘除，没有任何"数"的概念——你现在怎么告诉别人你有几只羊？
+  </div>
+
+  <p>闭上眼睛想一想。你不能说"我有五只羊"，因为"五"不存在。你不能写"5"，因为数字还没被发明。</p>
+
+  <p>你会怎么做？</p>
+
+  <p>——你会伸出五根手指。</p>
+
+  <p>这就是人类发明数字的起点。<strong>手指</strong>。一只羊对应一根手指。两只羊对应两根手指。这就是最早的一一对应——数学里最根本的思想，在人类还不会写字的时候就已经在了。</p>
+
+  <p>后来羊太多了，手指不够用了。怎么办？捡石头。在木头上刻凹痕。在绳子上打结。在泥板上用芦苇杆划记号。</p>
+
+  <p style="text-indent:0; margin-top:20px; color:var(--accent); font-weight:600; font-size:17px;">自然数不是本来就有的。它是我们的祖先为了"活下去、分清楚、算明白"而一点一点发明出来的工具。而这个工具，藏着比任何人想象的都要深的秘密。</p>
+
+  <div class="margin-note" style="top:80px;">
+    <strong>一一对应</strong>
+    数学里最基本的思想之一：如果两组东西能一个对一个地配成对，它们的数量就一样多。这个思想五万年前就有了。
+  </div>
+</section>
+
+<!-- ═══════════ §2 溯源 ═══════════ -->
+<section class="section" id="origin">
+  <span class="section-num">§2</span>
+  <h2>溯源 —— 数字的五千公里长跑</h2>
+  
+  <p>从用手指计数到我们今天用的 1, 2, 3，人类走了五千年。这不是一条直线——每一个文明都在用自己的方式回答同一个问题：<em>如何把"多少"这个感觉变成可以传递的符号？</em></p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">约前 3400 年</div>
+      <div class="timeline-label">苏美尔泥板</div>
+      <div class="timeline-desc">用芦苇杆在湿泥板上刻楔形记号。最早的文字——也是最早的数字。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">约前 3000 年</div>
+      <div class="timeline-label">古埃及象形数字</div>
+      <div class="timeline-desc">一根竖线=1，一个脚跟骨=10，一卷绳=100。每个数量级一个符号。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">约前 2000 年</div>
+      <div class="timeline-label">巴比伦 60 进制</div>
+      <div class="timeline-desc">为什么是 60？因为 60 能被 2、3、4、5、6 整除——分东西最方便。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">约前 500 年</div>
+      <div class="timeline-label">古希腊追问本质</div>
+      <div class="timeline-desc">毕达哥拉斯："万物皆数。"希腊人不满足于"怎么算"，开始追问"数是什么"。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">约公元 500 年</div>
+      <div class="timeline-label">印度发明 0</div>
+      <div class="timeline-desc">零不是"没有"，零是一个真正的数。这个发明改变了整个数学。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">约公元 800 年</div>
+      <div class="timeline-label">阿拉伯传递</div>
+      <div class="timeline-desc">花拉子米把印度数字系统带到阿拉伯世界。今天你用的"阿拉伯数字"其实源于印度。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">公元 1202 年</div>
+      <div class="timeline-label">斐波那契引入欧洲</div>
+      <div class="timeline-desc">《算盘书》让欧洲人第一次见到 1-9 和 0。从此罗马数字慢慢退出历史。</div>
+    </div>
+  </div>
+
+  <p><strong>注意一条暗线</strong>：每个文明的突破都在解决一个具体的"麻烦"——苏美尔人要收税、巴比伦人要分地、印度人要表示"空位"。数学从来不是因为"聪明人闲着没事"而进步的。它是因为<em>不解决这个问题日子就没法过</em>。</p>
+</section>
+
+<!-- ═══════════ §3 第一性拆解 ═══════════ -->
+<section class="section" id="first-principles">
+  <span class="section-num">§3</span>
+  <h2>第一性拆解 —— 五条规则，定义整个自然数宇宙</h2>
+
+  <p>我们用了很多自然数——数羊、算钱、记时间。但如果有人问你：<strong>自然数到底是什么？</strong></p>
+
+  <p>你不能说"就是 1, 2, 3, 4..."——这是在举例，不是在定义。就像你不能用"苹果、香蕉、橘子"来定义"水果"是什么。</p>
+
+  <p>这个问题，人类想了五千年才给出一个满意的答案。</p>
+
+  <div class="big-question" style="margin-bottom:28px;">
+    如果我们要定义"自然数"，最少需要几条规则？——要少到不能再少，少到每一条缺了都不行。
+  </div>
+
+  <div class="axiom-list">
+    <div class="axiom-card">
+      <div class="axiom-num">1</div>
+      <div class="axiom-text">
+        <strong>1 是一个数。</strong>
+        <span>得有一个起点。就像跑步得有一条起跑线。没有 1，整个自然数世界就无从开始。</span>
+      </div>
+    </div>
+    <div class="axiom-card">
+      <div class="axiom-num">2</div>
+      <div class="axiom-text">
+        <strong>每一个数，都有一个唯一的"下一个数"。</strong>
+        <span>1 的下一个是 2，2 的下一个是 3……这个"下一个"我们叫它<em>后继</em>。这条规则保证了数列不会断——你永远不会走到"尽头"。</span>
+      </div>
+    </div>
+    <div class="axiom-card">
+      <div class="axiom-num">3</div>
+      <div class="axiom-text">
+        <strong>1 不是任何数的"下一个"。</strong>
+        <span>没有比 1 更小的自然数了。如果有人问你"0.5 的下一个是不是 1.5？"——这里说的是自然数，不是所有数。这条规则把自然数和分数、小数划清了界限。</span>
+      </div>
+    </div>
+    <div class="axiom-card">
+      <div class="axiom-num">4</div>
+      <div class="axiom-text">
+        <strong>不同的数有不同的"下一个"。</strong>
+        <span>不会出现"3 的下一个是 4，5 的下一个也是 4"这种绕回去的情况。数列是一条不回头、不分叉的直线。</span>
+      </div>
+    </div>
+    <div class="axiom-card">
+      <div class="axiom-num">5</div>
+      <div class="axiom-text">
+        <strong>多米诺规则（数学归纳法）</strong>
+        <span>如果：① 1 有某个性质；②只要一个数有这个性质，它的下一个数也一定有这个性质——那么<em>所有</em>自然数都有这个性质。就像推倒第一块多米诺骨牌，后面的全部跟着倒下。这条规则是我们能"证明所有自然数都如何如何"的唯一依据。</span>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:24px;">五条。不能更少。这就是<strong>皮亚诺公理</strong>——19 世纪末，意大利数学家朱塞佩·皮亚诺用这五条规则，把两千年来"自然数到底是什么"这个问题彻底钉死了。</p>
+
+  <p style="color:var(--accent); font-weight:600;">从这五条规则出发，你可以推导出加法的定义、乘法的定义、甚至所有自然数的运算律。自然数不是"本来就长这样"——它是被这五条规则<em>构造</em>出来的。这才是第一性原理：不是接受结果，是回到定义本身。</p>
+</section>
+
+<!-- ═══════════ §4 人物志 ═══════════ -->
+<section class="section" id="people">
+  <span class="section-num">§4</span>
+  <h2>人物志 —— 那些被问题困住的人</h2>
+
+  <p class="no-indent">数学史不是聪明人的集邮册。每一个名字背后，都是一个被某个问题困住、不解决就睡不着的普通人。</p>
+
+  <div class="people-grid">
+    <div class="person-card">
+      <div class="person-avatar">毕</div>
+      <div class="person-name">毕达哥拉斯</div>
+      <div class="person-era">约前 570 — 前 495 年 · 古希腊</div>
+      <p class="person-story">他相信"万物皆数"——世界上的一切都可以用整数和分数来解释。然后他的学生希帕索斯发现了 √2——一个<strong>无法写成分数</strong>的数。传说希帕索斯因此被扔进了海里。这也许是数学史上最痛的一个瞬间：你最坚定的信仰被你最信任的数学亲手推翻。</p>
+    </div>
+    <div class="person-card">
+      <div class="person-avatar">欧</div>
+      <div class="person-name">欧几里得</div>
+      <div class="person-era">约前 325 — 前 265 年 · 古希腊</div>
+      <p class="person-story">《几何原本》的作者。有趣的是：他用几何图形来定义数——比如"数"就是"若干单位组成的量"。为什么不用数字？因为古希腊人不信任"无限"这个概念，他们觉得只有看得见的几何图形才是可靠的。</p>
+    </div>
+    <div class="person-card">
+      <div class="person-avatar">皮</div>
+      <div class="person-name">朱塞佩·皮亚诺</div>
+      <div class="person-era">1858 — 1932 · 意大利</div>
+      <p class="person-story">一个想把整个数学"翻译成符号"的人。他不仅定义了自然数的五条公理，还发明了一种国际辅助语。他的梦想是：所有数学定理都可以像机器一样从少数几条规则自动推导出来。这个梦想启发了后来的计算机科学。</p>
+    </div>
+    <div class="person-card">
+      <div class="person-avatar">康</div>
+      <div class="person-name">格奥尔格·康托尔</div>
+      <div class="person-era">1845 — 1918 · 德国</div>
+      <p class="person-story">他问了一个"小孩子才会问"的问题：<strong>自然数有多少个？无穷大。那无穷大还能比大小吗？</strong>他的答案震惊了整个数学界：无穷大也分大小。自然数的无穷大比所有实数的无穷大要"小"。他为此被同时代的人嘲笑了一辈子——死后才被公认为天才。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §5 关系网 ═══════════ -->
+<section class="section" id="relations">
+  <span class="section-num">§5</span>
+  <h2>关系网 —— 自然数在数学宇宙中的位置</h2>
+
+  <p>一个概念的价值，很多时候不在它自己，而在它和别的概念怎么连在一起。</p>
+
+  <div class="relation-map">
+    <div class="rel-row">
+      <div class="rel-box highlight">自然数 ℕ</div>
+      <div class="rel-arrow">⊂</div>
+      <div class="rel-box">整数 ℤ</div>
+      <div class="rel-arrow">⊂</div>
+      <div class="rel-box">有理数 ℚ</div>
+      <div class="rel-arrow">⊂</div>
+      <div class="rel-box">实数 ℝ</div>
+    </div>
+    <p style="margin-top:16px; font-size:14px; color:var(--ink-light); text-indent:0;">
+      自然数是所有数系的起点。就像一棵树的根。
+    </p>
+    <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--rule); font-size:14px; color:var(--ink-light); text-indent:0;">
+      <strong>加法</strong> = 后继的重复（3+2 = 3 的后继再后继 = 5）<br>
+      <strong>乘法</strong> = 加法的重复（3×2 = 3 加两次 = 6）<br>
+      <strong>乘方</strong> = 乘法的重复（3² = 3 乘两次 = 9）
+    </div>
+    <p style="margin-top:12px; font-size:13px; color:var(--accent-soft); text-indent:0; font-style:italic;">
+      整个算术大厦，建在"下一个"这个最简单不过的动作上。
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════ §6 亲手试 ═══════════ -->
+<section class="section" id="try-it">
+  <span class="section-num">§6</span>
+  <h2>亲手试 —— 用古人的方式感受数</h2>
+
+  <!-- 6.1 Clay Tablet -->
+  <div class="try-section">
+    <h3>在泥板上刻一个数</h3>
+    <p style="font-size:14px; color:var(--ink-light); text-indent:0;">五千年前的苏美尔人用芦苇杆在湿泥板上压出楔形记号。在下面的"泥板"上画一画，感受用符号记录数量的感觉。</p>
+    <div class="clay-tablet">
+      <canvas id="clayCanvas" width="500" height="200"></canvas>
+      <div class="clay-controls">
+        <button onclick="clearClay()">🗑️ 清空泥板</button>
+        <span style="font-size:12px; color:#6b5a3e;">用鼠标或手指在泥板上画</span>
+      </div>
+    </div>
+    <p style="font-size:13px; color:var(--ink-light); text-indent:0; margin-top:8px;">试试写一个"5"——五条竖线，或者一个楔形符号。这就是人类最早的"写数字"的方式。</p>
+  </div>
+
+  <!-- 6.2 Zero Question -->
+  <div class="try-section">
+    <h3>如果 0 不存在……</h3>
+    <p style="font-size:14px; color:var(--ink-light); text-indent:0;">零是印度人在公元 5 世纪左右发明的。在此之前，所有文明都没有"0 这个数"的概念。想象一下：如果 0 从不存在——</p>
+    
+    <div class="quiz-block">
+      <p style="font-weight:700; margin-bottom:8px; text-indent:0;">1 − 1 等于什么？</p>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="checkZero(this, true)">等于 0</button>
+        <button class="quiz-option" onclick="checkZero(this, false)">没有答案，这是个无意义的问题</button>
+        <button class="quiz-option" onclick="checkZero(this, false)">等于"无"（但"无"不是一个数）</button>
+      </div>
+      <div class="quiz-reveal" id="zeroReveal">
+        <strong>✓ 等于 0。</strong>但关键在于：<em>在没有发明 0 之前，第二个和第三个回答才是当时人们的真实想法。</em>古希腊人说"没有东西怎么可以是数？"古罗马人用拉丁文写"nulla"（没有），但它只是一个词，不是一个数字。印度的天才在于：他们说"空的位置也是一个数"。0 不是"没有"——0 是一个有位置、能做运算的数。这个思维跳跃，等了人类三千年。
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.3 Hilbert's Hotel -->
+  <div class="try-section">
+    <h3>希尔伯特旅馆 —— 无穷大加 1 还是无穷大吗？</h3>
+    <p style="font-size:14px; color:var(--ink-light); text-indent:0;">想象一家有无穷多个房间的旅馆——房间号是 1, 2, 3, 4, 5...永远排下去。所有房间都住满了。这时来了一位新客人。还能住进去吗？</p>
+
+    <div class="hotel-demo">
+      <div class="hotel-rooms" id="hotelRooms"></div>
+      <div class="hotel-controls">
+        <button onclick="resetHotel()">🔄 重置（全满）</button>
+        <button onclick="newGuest()">🧑 来了一位新客人</button>
+      </div>
+      <div class="hotel-status" id="hotelStatus">🏨 所有房间都满了。但……无穷旅馆永远有空房。</div>
+    </div>
+
+    <p style="font-size:14px; color:var(--ink); margin-top:12px; text-indent:0;">
+      <strong>答案是：能。</strong>把 1 号房的人移到 2 号，2 号移到 3 号，3 号移到 4 号……每个人都"往右挪一间"。1 号房就空出来给新客人了。无穷大 + 1 = 无穷大。这不是"差不多大"——是<em>一模一样大</em>。无穷大的世界里，加一个不改变大小。
+    </p>
+    <p style="font-size:13px; color:var(--accent-soft); text-indent:0; font-style:italic;">
+      这是康托尔最天才的发现之一。他证明了：无穷大也分大小——自然数的无穷大是最"小"的那一种。
+    </p>
+  </div>
+
+  <div class="margin-note" style="top:650px;">
+    <strong>无穷大分大小</strong>
+    自然数的无穷大（ℵ₀）&lt; 实数的无穷大（ℵ₁）。两个无穷大之间的差，不是几个，是无穷多个。康托尔为此被嘲笑了一辈子。
+  </div>
+</section>
+
+<!-- ═══════════ §7 更深一层 ═══════════ -->
+<section class="section" id="further">
+  <span class="section-num">§7</span>
+  <h2>更深一层 —— 自然数里还有多少未解之谜？</h2>
+
+  <p>不要以为"自然数"太简单，所以没什么可研究的。恰恰相反——它是数学里最老的研究对象，也是谜题最多的地方。</p>
+
+  <details class="further-item">
+    <summary>哥德尔不完备定理：有些关于自然数的事，永远无法被证明</summary>
+    <div class="further-content">
+      <p>1931 年，一个 25 岁的奥地利数学家库尔特·哥德尔证明了一件让人脊背发凉的事：在任何包含自然数的数学系统里，都存在一些<strong>既不能被证明、也不能被推翻的陈述</strong>。</p>
+      <p>换句话说：即使你从皮亚诺那五条公理出发，穷尽一切推理，总有一些关于自然数的命题你永远无法确定真假。这不是"我们还没想到办法"——是<strong>原则上就不可能</strong>。</p>
+      <p style="font-size:13px; color:var(--accent-soft);">对小学生来说，这个故事的意义不是要理解定型本身——而是理解一个更深的道理：即使是最简单的东西（1, 2, 3, 4...），也藏着人类智慧无法穷尽的秘密。数学不是一本已经写完的书。</p>
+    </div>
+  </details>
+
+  <details class="further-item">
+    <summary>黎曼猜想：素数是怎么分布的？——悬赏 100 万美元的问题</summary>
+    <div class="further-content">
+      <p><strong>素数</strong>是自然数里的"原子"——只能被 1 和自己整除的数。2, 3, 5, 7, 11, 13, 17, 19…</p>
+      <p>问题是：它们是怎么分布的？为什么有时候两个素数紧挨着（11 和 13），有时候隔很远（113 到 127 隔了 13 个数）？</p>
+      <p>1859 年，黎曼提出了一个猜想，如果能证明它，就能精确预测素数的分布规律。165 年过去了，全世界最聪明的数学家都没能彻底证明它。克雷数学研究所悬赏 100 万美元求解。</p>
+      <p style="font-size:13px; color:var(--accent-soft);">而这一切，都源于最简单的自然数。</p>
+    </div>
+  </details>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="page-footer">
+  <p>数学不是一本已经写完的书。</p>
+  <p>它是一封人类写给自己的信，从五千年写到今天，还没写完。</p>
+  <p class="nav-hint">📖 下一章：整数 —— 当"不够减"催生了负数</p>
+</footer>
+
+</div><!-- /.manuscript -->
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+// ── Clay Tablet Canvas ──
+(function() {
+  const canvas = document.getElementById('clayCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  
+  function resizeCanvas() {
+    const container = canvas.parentElement;
+    const w = Math.min(container.clientWidth - 32, 500);
+    canvas.width = w;
+    canvas.height = 200;
+    ctx.strokeStyle = '#4a3520';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.fillStyle = '#c9a87c';
+    ctx.fillRect(0, 0, w, 200);
+  }
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY
+    };
+  }
+  
+  function startDraw(e) {
+    e.preventDefault();
+    drawing = true;
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+  }
+  
+  function draw(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const pos = getPos(e);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+  }
+  
+  function stopDraw() {
+    drawing = false;
+    ctx.closePath();
+  }
+  
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDraw);
+  canvas.addEventListener('mouseleave', stopDraw);
+  canvas.addEventListener('touchstart', startDraw, {passive: false});
+  canvas.addEventListener('touchmove', draw, {passive: false});
+  canvas.addEventListener('touchend', stopDraw);
+  
+  window.clearClay = function() {
+    ctx.fillStyle = '#c9a87c';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  };
+})();
+
+// ── Zero Quiz ──
+window.checkZero = function(btn, isCorrect) {
+  const container = btn.parentElement.parentElement;
+  // Reset all
+  container.querySelectorAll('.quiz-option').forEach(b => {
+    b.classList.remove('correct', 'wrong');
+    b.disabled = true;
+  });
+  btn.disabled = false;
+  if (isCorrect) {
+    btn.classList.add('correct');
+    container.querySelector('.quiz-reveal').classList.add('show');
+  } else {
+    btn.classList.add('wrong');
+  }
+};
+
+// ── Hilbert Hotel ──
+const TOTAL_ROOMS = 8;
+let hotelGuests = TOTAL_ROOMS; // all occupied initially
+
+function renderHotel(animatingRoom) {
+  const container = document.getElementById('hotelRooms');
+  let html = '';
+  for (let i = 1; i <= TOTAL_ROOMS; i++) {
+    const occ = i <= hotelGuests;
+    const moving = animatingRoom === i ? ' moving' : '';
+    html += `<div class="hotel-room${occ ? ' occupied' : ''}${moving}">${i}</div>`;
+  }
+  container.innerHTML = html;
+  
+  const status = document.getElementById('hotelStatus');
+  if (hotelGuests >= TOTAL_ROOMS) {
+    status.innerHTML = '🏨 所有房间都满了。但……无穷旅馆永远有空房。';
+  } else {
+    status.innerHTML = `🏨 ${TOTAL_ROOMS - hotelGuests} 间空房。新客人成功入住！`;
+  }
+}
+
+window.resetHotel = function() {
+  hotelGuests = TOTAL_ROOMS;
+  renderHotel();
+};
+
+window.newGuest = function() {
+  if (hotelGuests >= TOTAL_ROOMS) {
+    // Shift everyone right — animate the shift
+    for (let i = TOTAL_ROOMS; i >= 1; i--) {
+      setTimeout(() => renderHotel(i), (TOTAL_ROOMS - i) * 200);
+    }
+    // After animation, keep all occupied (infinity hotel trick: everyone shifts right by 1, room 1 opens)
+    // In our finite demo, we show the concept by adding a guest but showing the "shift" animation
+    setTimeout(() => {
+      hotelGuests = TOTAL_ROOMS + 1; // conceptually
+      // For display, keep TOTAL_ROOMS but mark room 1 as occupied by new guest
+      renderHotel();
+      document.getElementById('hotelStatus').innerHTML = 
+        '✨ 每个人都往右挪了一间，1 号房空了！新客人入住。无穷大 + 1 = 无穷大。';
+    }, TOTAL_ROOMS * 200 + 300);
+  } else {
+    hotelGuests++;
+    renderHotel();
+  }
+};
+
+// Initialize
+renderHotel();
+</script>
+
+</body>
+</html>
