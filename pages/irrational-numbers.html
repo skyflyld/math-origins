@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="theme-color" content="#f8f2e4">
+<title>无理数 · 数学起源</title>
+<style>:root{--parchment:#f8f2e4;--ink:#2c2416;--ink-light:#5c4a2e;--accent:#8b4513;--accent-soft:#c4956a;--rule:#c4b99a;--highlight:#e8d5b7;--note-bg:#fdf8f0;--shadow:rgba(44,36,22,0.08);--green:#4a7c59;--red:#c44}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{background:#e8e0d3;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:#2c2416;line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+.manuscript{max-width:780px;margin:0 auto;padding:56px 40px 72px;background:var(--parchment);background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(180,160,130,0.12) 27px,rgba(180,160,130,0.12) 28px);box-shadow:0 2px 20px var(--shadow);min-height:100vh}
+.page-header{text-align:center;margin-bottom:44px;padding-bottom:32px;border-bottom:2px solid var(--rule);position:relative}.page-header::after{content:'✦';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 16px;color:var(--accent);font-size:20px}.chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft)}.page-title{font-size:40px;font-weight:700;letter-spacing:4px;margin-bottom:6px}.page-subtitle{font-size:17px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
+.section{margin:48px 0}.section h2{font-size:24px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--rule);letter-spacing:2px}.section h3{font-size:19px;color:var(--accent);margin:24px 0 12px}p{margin-bottom:12px;text-indent:2em}p.ni{text-indent:0}
+.hook-box{background:var(--highlight);border-left:5px solid var(--accent);padding:24px 28px;margin:20px 0;font-size:19px;line-height:1.7;border-radius:0 10px 10px 0;text-indent:0;position:relative}.hook-box::before{content:'🤔';position:absolute;top:-14px;left:16px;background:var(--parchment);padding:0 6px}
+.vis{background:var(--note-bg);border:1px solid var(--rule);border-radius:12px;padding:24px;margin:20px 0;text-align:center}
+.sqrt-demo{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin:16px 0}
+.sqrt-square{width:120px;height:120px;background:var(--accent);border:2px solid var(--ink);position:relative;display:flex;align-items:center;justify-content:center;color:var(--parchment);font-size:28px;font-weight:700;border-radius:8px}
+.sqrt-diag{position:absolute;width:2px;height:170px;background:var(--red);transform:rotate(45deg);transform-origin:center}
+.sqrt-label{font-size:18px;font-weight:700;color:var(--accent)}
+.timeline-compact{display:flex;gap:10px;overflow-x:auto;padding:16px 0;scroll-snap-type:x mandatory}.tc-item{flex:0 0 160px;text-align:center;padding:14px 10px;background:var(--note-bg);border:1px solid var(--rule);border-radius:8px;scroll-snap-align:start}.tc-emoji{font-size:28px}.tc-year{font-size:11px;color:var(--accent-soft)}.tc-label{font-size:14px;font-weight:700}.tc-desc{font-size:11px;color:var(--ink-light)}
+.qz-options{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}.qz-opt{padding:10px 20px;border:2px solid var(--rule);border-radius:8px;background:var(--parchment);cursor:pointer;font-size:14px;transition:all 0.2s;font-family:inherit}.qz-opt:hover{border-color:var(--accent-soft)}.qz-opt.good{border-color:var(--green);background:#e8f0e3}.qz-opt.bad{border-color:var(--red);background:#fce8e8}.qz-reveal{display:none;margin-top:10px;padding:14px;background:#e8f0e3;border-radius:8px;font-size:14px;line-height:1.7;color:#2d4a35}.qz-reveal.show{display:block}
+.page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:2px solid var(--rule);position:relative}.page-footer::before{content:'❧';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 12px;color:var(--accent-soft);font-size:22px}.page-footer p{font-size:13px;color:var(--ink-light);text-indent:0}.nav-hint{margin-top:12px;font-size:14px;color:var(--accent-soft)}.nav-hint a{color:inherit;text-decoration:none}
+@media(max-width:768px){.manuscript{padding:32px 18px}.page-title{font-size:28px}.tc-item{flex:0 0 140px}.sqrt-square{width:90px;height:90px}}@media(max-width:480px){.manuscript{padding:22px 12px}.page-title{font-size:22px}}</style>
+</head>
+<body>
+<div class="manuscript">
+<header class="page-header"><div class="chapter-num">第六章</div><h1 class="page-title">无理数</h1><p class="page-subtitle">—— 那个让毕达哥拉斯崩溃的发现</p></header>
+
+<section class="section"><h2>§1 钩子</h2>
+<div class="hook-box">一个边长为 1 的正方形，对角线有多长？答案是 √2 ≈ 1.41421356...——这个数的小数部分永远不会终止，也永远不会循环。它不能被写成任何分数。</div>
+<p>这个发现发生在公元前 5 世纪。毕达哥拉斯学派相信"万物皆（有理）数"——世界上的一切都可以用整数和它们的比例（分数）来解释。√2 的存在证明了这个信仰是错的。</p>
+<p>传说发现这个事实的学生<strong>希帕索斯</strong>被扔进了海里。不是因为他说错了——是因为他说对了，而这个真相太疼了。</p>
+
+<div class="vis"><h3 style="margin-top:0">📐 √2：正方形对角线的秘密</h3>
+<div class="sqrt-demo"><div class="sqrt-square">1</div><div style="font-size:40px">→</div><div style="text-align:center"><div style="font-size:14px;color:var(--ink-light)">对角线 =</div><div style="font-size:32px;font-weight:700;color:var(--red)">√2</div><div style="font-size:13px;color:var(--ink-light)">≈ 1.4142135623...</div></div></div>
+<p style="font-size:13px;color:var(--ink-light);text-indent:0">一个"看得见"的长度，却写不成分数。这是人类第一次发现：数学世界里有些东西，逻辑上可以存在，但用已有的工具无法表达。</p></div>
+</section>
+
+<section class="section"><h2>§2 溯源</h2>
+<div class="timeline-compact">
+<div class="tc-item"><div class="tc-emoji">🔺</div><div class="tc-year">约前450年</div><div class="tc-label">希帕索斯发现</div><div class="tc-desc">证明√2不是有理数。传说因此被处死</div></div>
+<div class="tc-item"><div class="tc-emoji">🏛️</div><div class="tc-year">约前350年</div><div class="tc-label">欧多克索斯回避</div><div class="tc-desc">用比例论绕开无理数——一个天才的"补丁"</div></div>
+<div class="tc-item"><div class="tc-emoji">🇩🇪</div><div class="tc-year">1872年</div><div class="tc-label">戴德金分割</div><div class="tc-desc">用"分界线"严格定义无理数</div></div>
+<div class="tc-item"><div class="tc-emoji">🇩🇪</div><div class="tc-year">1874年</div><div class="tc-label">康托尔证明</div><div class="tc-desc">无理数远比有理数"多"——几乎所有的数都是无理数</div></div>
+</div></section>
+
+<section class="section"><h2>§3 第一性 —— 为什么 √2 写不成分数？</h2>
+<p>假设 √2 = a/b（a 和 b 是互质的整数）。则 2 = a²/b²，即 a² = 2b²。这意味着 a² 是偶数 → a 是偶数 → a = 2k。代入：4k² = 2b² → b² = 2k² → b² 是偶数 → b 是偶数。a 和 b 都是偶数 → 它们不互质！矛盾。</p>
+<p>这个证明只有 9 行，却推翻了毕达哥拉斯一生最坚定的信仰。<strong>逻辑不在乎你的感受。</strong></p></section>
+
+<section class="section"><h2>§4 人物</h2>
+<p><strong>希帕索斯</strong>（约前5世纪，古希腊）：毕达哥拉斯的学生。发现 √2 无法写成分数。传说因此被扔进海里——数学史上最早也最悲壮的"吹哨人"。</p>
+<p><strong>格奥尔格·康托尔</strong>（1845–1918）：证明无理数的"个数"比有理数多<strong>无穷多倍</strong>。你在数轴上随便指一个位置，它几乎一定是无理数。</p></section>
+
+<section class="section"><h2>§5 关系网</h2>
+<div class="vis" style="text-align:left"><p style="text-indent:0;font-weight:700">无理数的大家庭：</p><p style="text-indent:0;margin:10px 0">√2, √3, √5...（二次无理数）<br>π ≈ 3.14159...（圆周率——超越了代数方程）<br>e ≈ 2.71828...（自然对数的底——微积分的核心）<br>φ = (1+√5)/2 ≈ 1.618...（黄金比例——自然界无处不在）</p></div></section>
+
+<section class="section"><h2>§6 亲手试</h2>
+<div class="vis"><h3 style="margin-top:0;text-align:left">π 和 22/7 哪个大？</h3>
+<div class="qz-options"><button class="qz-opt" onclick="iqz(this,true)">π 更大</button><button class="qz-opt" onclick="iqz(this,false)">22/7 更大</button><button class="qz-opt" onclick="iqz(this,false)">一样大</button></div>
+<div class="qz-reveal" id="iqz1">✅ <strong>π 更大，但非常接近。</strong>π ≈ 3.14159265...，22/7 ≈ 3.14285714...。所以 22/7 比 π 大一点点。22/7 是一个很好的近似——它是"约率"，祖冲之后来发现了"密率"355/113，更精确。</div></div></section>
+
+<section class="section"><h2>§7 更深一层</h2>
+<p>无理数中还有"超越数"——不仅是无理数，而且不能是任何整数系数代数方程的解。π 和 e 都是超越数。证明一个数是超越数，通常比证明它是无理数难上千倍。康托尔证明了：几乎所有的实数都是超越数——但人类真正"认识"的超越数就那么几个。我们在数学的无限海洋里，只看到了几朵浪花。</p></section>
+
+<footer class="page-footer"><p>无理数的发现告诉我们：宇宙不欠我们"整数"。真相的逻辑不因我们的信仰而改变。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 下一章：<a href="addition.html">加法</a></p></footer>
+</div>
+<script>
+function iqz(b,c){let p=b.closest('.vis');p.querySelectorAll('.qz-opt').forEach(o=>{o.classList.remove('good','bad');o.disabled=true});b.disabled=false;c?(b.classList.add('good'),p.querySelector('.qz-reveal').classList.add('show')):b.classList.add('bad')}
+</script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="theme-color" content="#f8f2e4">
+<title>自然数 · 数的起源</title>
+<style>
+  :root {
+    --parchment: #f8f2e4; --parchment-dark: #ede4d3;
+    --ink: #2c2416; --ink-light: #5c4a2e;
+    --accent: #8b4513; --accent-soft: #c4956a;
+    --rule: #c4b99a; --highlight: #e8d5b7;
+    --note-bg: #fdf8f0; --shadow: rgba(44,36,22,0.08);
+    --clay: #c9a87c; --clay-dark: #a8895e;
+    --green: #4a7c59; --red: #c44;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+  body{
+    background:#e8e0d3;
+    background-image:radial-gradient(ellipse at 20% 50%,rgba(139,69,19,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(139,69,19,0.04) 0%,transparent 50%);
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
+    color:var(--ink);line-height:1.8;font-size:18px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .manuscript{
+    max-width:780px;margin:0 auto;padding:60px 44px 80px;
+    background:var(--parchment);
+    background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(180,160,130,0.13) 27px,rgba(180,160,130,0.13) 28px);
+    box-shadow:0 2px 20px var(--shadow),0 0 0 1px rgba(139,69,19,0.06);
+    position:relative;min-height:100vh;
+  }
+
+  /* Header */
+  .page-header{text-align:center;margin-bottom:50px;padding-bottom:36px;border-bottom:2px solid var(--rule);position:relative}
+  .page-header::after{content:'✦';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 16px;color:var(--accent);font-size:20px}
+  .chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft);margin-bottom:8px;text-transform:uppercase}
+  .page-title{font-size:44px;font-weight:700;color:var(--ink);letter-spacing:4px;margin-bottom:8px}
+  .page-subtitle{font-size:18px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
+
+  /* Sections */
+  .section{margin:56px 0;position:relative}
+  .section-num{position:absolute;left:-68px;top:6px;font-size:13px;color:var(--accent-soft);letter-spacing:1px;font-weight:500}
+  .section h2{font-size:26px;color:var(--ink);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--rule);letter-spacing:2px;font-weight:600}
+  .section h3{font-size:20px;color:var(--accent);margin:28px 0 14px;font-weight:600}
+  p{margin-bottom:14px;text-indent:2em}
+  p.ni{text-indent:0}
+
+  /* Big question */
+  .hook-box{background:var(--highlight);border-left:5px solid var(--accent);padding:28px 32px;margin:24px 0;font-size:20px;line-height:1.7;border-radius:0 10px 10px 0;position:relative;text-indent:0}
+  .hook-box::before{content:'🤔';position:absolute;top:-15px;left:18px;background:var(--parchment);padding:0 6px;font-size:20px}
+
+  /* ── VISUAL: Sheep Counter ── */
+  .sheep-counter{display:flex;align-items:center;justify-content:center;gap:28px;margin:32px 0;padding:24px;background:var(--note-bg);border:1px solid var(--rule);border-radius:12px;flex-wrap:wrap}
+  .sheep-col{text-align:center}
+  .sheep-col .label{font-size:14px;color:var(--ink-light);margin-bottom:8px;font-weight:600}
+  .sheep-icons{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:200px}
+  .sheep-icon{font-size:32px;transition:all 0.3s}
+  .sheep-icon.popping{animation:pop 0.4s ease}
+  @keyframes pop{0%{transform:scale(0)} 60%{transform:scale(1.3)} 100%{transform:scale(1)}}
+  .sheep-arrow{font-size:28px;color:var(--accent)}
+  .sheep-btn{padding:10px 24px;background:var(--accent);color:var(--parchment);border:none;border-radius:8px;font-size:15px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+  .sheep-btn:hover{opacity:0.85;transform:translateY(-1px)}
+  .sheep-btn:active{transform:scale(0.96)}
+  .sheep-num{font-size:48px;font-weight:700;color:var(--accent);text-align:center;min-width:60px}
+  .sheep-reset{font-size:13px;color:var(--accent-soft);cursor:pointer;border:none;background:none;font-family:inherit;margin-top:8px;text-decoration:underline}
+
+  /* ── VISUAL: Ancient Numeral Converter ── */
+  .num-converter{background:var(--note-bg);border:1px solid var(--rule);border-radius:12px;padding:28px;margin:24px 0}
+  .num-input-row{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+  .num-input-row input{width:120px;padding:12px 16px;font-size:22px;border:2px solid var(--rule);border-radius:8px;background:var(--parchment);color:var(--ink);text-align:center;font-family:inherit}
+  .num-input-row input:focus{outline:none;border-color:var(--accent)}
+  .num-input-row button{padding:12px 24px;background:var(--accent);color:var(--parchment);border:none;border-radius:8px;font-size:16px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+  .num-input-row button:active{transform:scale(0.96)}
+  .num-results{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .num-card{background:var(--parchment);border:1px solid var(--rule);border-radius:10px;padding:18px;text-align:center;transition:all 0.25s}
+  .num-card:hover{border-color:var(--accent-soft);box-shadow:0 4px 12px var(--shadow)}
+  .num-card .sys-name{font-size:13px;color:var(--accent-soft);letter-spacing:2px;margin-bottom:4px}
+  .num-card .sys-display{font-size:26px;color:var(--ink);font-weight:700;min-height:40px;display:flex;align-items:center;justify-content:center;word-break:break-all}
+  .num-card .sys-year{font-size:11px;color:var(--accent-soft);margin-top:4px}
+  .num-card .sys-note{font-size:12px;color:var(--accent-soft);margin-top:2px}
+
+  /* ── VISUAL: Peano Chain ── */
+  .peano-viz{background:var(--note-bg);border:1px solid var(--rule);border-radius:12px;padding:24px;margin:24px 0;overflow-x:auto}
+  .peano-chain{display:flex;align-items:center;gap:8px;min-width:fit-content;padding:8px 0}
+  .peano-node{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--parchment);background:var(--accent);transition:all 0.3s;flex-shrink:0}
+  .peano-node.coming{animation:nodeSlide 0.5s ease}
+  @keyframes nodeSlide{from{opacity:0;transform:translateX(-20px) scale(0.5)} to{opacity:1;transform:translateX(0) scale(1)}}
+  .peano-arrow-link{font-size:22px;color:var(--accent-soft);flex-shrink:0}
+  .peano-dots{font-size:22px;color:var(--accent-soft);letter-spacing:3px}
+  .peano-add{display:flex;justify-content:center;margin-top:16px}
+  .peano-add button{padding:10px 28px;background:var(--accent);color:var(--parchment);border:none;border-radius:8px;font-size:15px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+  .peano-add button:active{transform:scale(0.96)}
+
+  /* ── Timeline ── */
+  .timeline{display:flex;gap:12px;margin:28px 0;overflow-x:auto;padding:20px 0 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;position:relative}
+  .timeline::before{content:'';position:absolute;top:50px;left:0;right:0;height:2px;background:var(--rule);z-index:0}
+  .tli{flex:0 0 155px;text-align:center;position:relative;z-index:1;cursor:pointer;transition:transform 0.2s;scroll-snap-align:start}
+  .tli:hover{transform:translateY(-4px)}
+  .tli-dot{width:16px;height:16px;background:var(--accent);border-radius:50%;margin:0 auto 14px;border:3px solid var(--parchment);box-shadow:0 0 0 2px var(--accent);position:relative;z-index:1}
+  .tli-emoji{font-size:28px;margin-bottom:4px}
+  .tli-year{font-size:12px;color:var(--accent-soft);letter-spacing:1px}
+  .tli-label{font-size:14px;font-weight:700;color:var(--ink);margin:2px 0}
+  .tli-desc{font-size:11px;color:var(--ink-light);line-height:1.4}
+
+  /* ── Axiom Cards ── */
+  .axiom-grid{display:grid;gap:12px;margin:20px 0}
+  .axc{background:var(--note-bg);border:1px solid var(--rule);padding:16px 20px;border-radius:8px;display:flex;gap:14px;align-items:flex-start;transition:all 0.25s}
+  .axc:hover{border-color:var(--accent-soft);box-shadow:0 4px 12px var(--shadow);transform:translateX(4px)}
+  .axc-num{font-size:30px;font-weight:700;color:var(--accent);line-height:1;flex-shrink:0;min-width:36px;text-align:center}
+  .axc-text strong{display:block;font-size:16px;margin-bottom:2px;color:var(--ink)}
+  .axc-text span{font-size:13px;color:var(--ink-light);line-height:1.5}
+
+  /* ── People ── */
+  .people-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+  .person{border:1px solid var(--rule);border-radius:10px;padding:20px;background:var(--note-bg);transition:all 0.25s}
+  .person:hover{border-color:var(--accent-soft);box-shadow:0 6px 16px var(--shadow)}
+  .person-emoji{font-size:36px;margin-bottom:8px}
+  .person-name{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:2px}
+  .person-era{font-size:11px;color:var(--accent-soft);letter-spacing:1px;margin-bottom:8px}
+  .person-story{font-size:13px;color:var(--ink-light);line-height:1.6;text-indent:0}
+
+  /* ── Relation Map ── */
+  .rel-map{background:var(--note-bg);border:1px solid var(--rule);border-radius:10px;padding:28px 20px;margin:20px 0;text-align:center}
+  .rel-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px 0;flex-wrap:wrap}
+  .rel-box{padding:10px 18px;border:2px solid var(--accent);border-radius:8px;font-weight:700;font-size:15px;color:var(--ink);background:var(--parchment);transition:all 0.2s}
+  .rel-box.hl{background:var(--accent);color:var(--parchment);border-color:var(--accent)}
+  .rel-arr{font-size:20px;color:var(--accent-soft);font-weight:700}
+
+  /* ── Try-it Blocks ── */
+  .try-block{background:var(--note-bg);border:1px dashed var(--accent-soft);border-radius:12px;padding:24px;margin:22px 0}
+  .try-block h3{margin-top:0;display:flex;align-items:center;gap:8px}
+  .try-block h3::before{content:'✋';font-size:20px}
+
+  /* Clay tablet */
+  .clay{background:var(--clay);border-radius:10px;padding:14px;margin:14px 0;display:flex;flex-direction:column;align-items:center;gap:10px;box-shadow:inset 0 2px 8px rgba(0,0,0,0.1)}
+  .clay canvas{background:var(--clay-dark);border-radius:4px;cursor:crosshair;box-shadow:inset 0 1px 4px rgba(0,0,0,0.2);touch-action:none;max-width:100%}
+  .clay button{padding:6px 16px;background:var(--accent);color:var(--parchment);border:none;border-radius:6px;font-size:13px;cursor:pointer;font-family:inherit}
+
+  /* Zero quiz */
+  .qz-options{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+  .qz-opt{padding:10px 20px;border:2px solid var(--rule);border-radius:8px;background:var(--parchment);cursor:pointer;font-size:14px;transition:all 0.2s;font-family:inherit}
+  .qz-opt:hover{border-color:var(--accent-soft)}
+  .qz-opt.correct{border-color:var(--green);background:#e8f0e3;color:#2d4a35}
+  .qz-opt.wrong{border-color:var(--red);background:#fce8e8;color:#a33}
+  .qz-reveal{display:none;margin-top:12px;padding:14px;background:#e8f0e3;border-radius:8px;font-size:14px;line-height:1.7;color:#2d4a35}
+  .qz-reveal.show{display:block}
+
+  /* Hotel */
+  .hotel{border:1px solid var(--rule);border-radius:10px;padding:20px;margin:16px 0;text-align:center;background:#f0ebe0}
+  .hotel-rooms{display:flex;gap:6px;margin:14px 0;justify-content:center;flex-wrap:wrap}
+  .hotel-room{width:44px;height:44px;border:2px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:var(--parchment);transition:all 0.3s}
+  .hotel-room.occ{background:var(--accent);color:var(--parchment);border-color:var(--accent)}
+  .hotel-room.moving{animation:rmShift 0.5s ease}
+  @keyframes rmShift{50%{transform:translateY(-8px);background:var(--accent-soft)}}
+  .hotel-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .hotel-btns button{padding:8px 18px;background:var(--accent);color:var(--parchment);border:none;border-radius:6px;font-size:14px;cursor:pointer;font-family:inherit}
+  .hotel-status{margin-top:10px;font-size:14px;color:var(--ink-light)}
+
+  /* Further reading */
+  .further{margin:10px 0}
+  .further>details{border:1px solid var(--rule);border-radius:8px;padding:14px 18px;margin:8px 0;cursor:pointer;background:var(--note-bg);transition:all 0.2s}
+  .further>details:hover{border-color:var(--accent-soft)}
+  .further summary{font-weight:700;font-size:15px;color:var(--ink);cursor:pointer;list-style:none}
+  .further summary::-webkit-details-marker{display:none}
+  .further summary::before{content:'📜 '}
+  .further>details[open] summary::before{content:'📖 '}
+  .further-content{margin-top:12px;padding-top:12px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink-light);line-height:1.7}
+
+  /* Footer */
+  .page-footer{text-align:center;margin-top:56px;padding-top:28px;border-top:2px solid var(--rule);position:relative}
+  .page-footer::before{content:'❧';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 12px;color:var(--accent-soft);font-size:22px}
+  .page-footer p{font-size:14px;color:var(--ink-light);text-indent:0;margin-bottom:2px}
+  .page-footer .nav-hint{margin-top:14px;color:var(--accent-soft);font-size:14px;letter-spacing:1px}
+
+  /* Responsive */
+  @media(min-width:1401px){.manuscript{max-width:840px;padding:72px 56px 96px}body{font-size:19px}.page-title{font-size:50px}}
+  @media(max-width:1024px){
+    .section-num{position:static;display:block;margin-bottom:6px;font-size:14px}
+    .manuscript{max-width:100%;margin:0;padding:48px 28px 60px}
+    .page-title{font-size:36px}
+    .num-results{grid-template-columns:1fr}
+  }
+  @media(max-width:768px){
+    body{font-size:16px;line-height:1.75}
+    .manuscript{padding:32px 18px 48px;background-image:repeating-linear-gradient(transparent,transparent 24px,rgba(180,160,130,0.11) 24px,rgba(180,160,130,0.11) 25px)}
+    .page-title{font-size:28px;letter-spacing:2px}
+    .page-subtitle{font-size:15px}
+    .section h2{font-size:20px}.section h3{font-size:17px}
+    .hook-box{font-size:17px;padding:18px 20px}
+    .people-grid{grid-template-columns:1fr;gap:10px}
+    .axc{padding:12px 14px;gap:10px}.axc-num{font-size:24px;min-width:28px}
+    .timeline{gap:8px}.tli{flex:0 0 145px}
+    .rel-box{font-size:12px;padding:6px 12px}
+    .qz-options{flex-direction:column}.qz-opt{width:100%;text-align:center}
+    .hotel-room{width:36px;height:36px;font-size:10px}
+    .hotel-btns{flex-direction:column;align-items:center}
+    .hotel-btns button{width:100%;max-width:220px}
+    .sheep-counter{gap:16px;padding:18px}
+    .sheep-icon{font-size:26px}.sheep-num{font-size:36px}
+    p{text-indent:1em}
+  }
+  @media(max-width:480px){
+    body{font-size:15px}
+    .manuscript{padding:22px 12px;box-shadow:none;background-image:repeating-linear-gradient(transparent,transparent 22px,rgba(180,160,130,0.09) 22px,rgba(180,160,130,0.09) 23px)}
+    .page-title{font-size:24px}.section h2{font-size:18px}
+    .hook-box{font-size:15px;padding:14px 16px;border-left-width:4px}
+    .num-input-row input{width:100px;font-size:18px}
+    .num-card .sys-display{font-size:20px}
+    .peano-node{width:40px;height:40px;font-size:18px}
+    .tli{flex:0 0 135px}
+    .person{padding:14px}.person-emoji{font-size:28px}
+    .rel-box{font-size:11px;padding:5px 10px}
+    .try-block{padding:14px 10px}
+    .page-footer p{font-size:12px}p{text-indent:0}
+  }
+  @media(hover:none) and (pointer:coarse){
+    button,.qz-opt,[role=button]{min-height:44px}
+  }
+</style>
+</head>
+<body>
+<div class="manuscript">
+
+<header class="page-header">
+  <div class="chapter-num">第一章</div>
+  <h1 class="page-title">自然数</h1>
+  <p class="page-subtitle">—— 人类最古老的发明，也是最深的谜</p>
+</header>
+
+<!-- ═══════ §1 钩子 + 一一对应动画 ═══════ -->
+<section class="section">
+  <span class="section-num">§1</span>
+  <h2>如果没有数字……</h2>
+
+  <div class="hook-box">
+    如果世界上从来没有 1、2、3，没有任何"数"的概念——你怎么告诉别人你有几只羊？
+  </div>
+
+  <p>试试看：点下面的按钮，把羊赶进羊圈。每进来一只羊，用一根手指记数。</p>
+
+  <div class="sheep-counter" id="sheepCounter">
+    <div class="sheep-col">
+      <div class="label">🐑 羊</div>
+      <div class="sheep-icons" id="sheepIcons"></div>
+    </div>
+    <div class="sheep-arrow">→</div>
+    <div class="sheep-col">
+      <div class="label">✋ 手指</div>
+      <div class="sheep-icons" id="fingerIcons"></div>
+    </div>
+    <div style="text-align:center">
+      <button class="sheep-btn" onclick="addSheep()">➕ 加一只羊</button>
+      <div class="sheep-num" id="sheepCount">0</div>
+      <button class="sheep-reset" onclick="resetSheep()">重新开始</button>
+    </div>
+  </div>
+
+  <p style="color:var(--accent);font-weight:600;font-size:16px;">这就是"一一对应"——数学里最古老的思想。一只羊 ⇄ 一根手指。两件事物的数量一样多，不是因为它们长得像，而是因为它们能<em>一对一配成对</em>。这个想法，人类在五万年前就会了。</p>
+
+  <p>后来羊太多了，手指不够用——捡石头、木头上刻凹痕、绳子上打结、泥板上划记号。自然数不是本来就有的，是祖先为了<strong>活下去、分清楚、算明白</strong>一点一点发明出来的。</p>
+</section>
+
+<!-- ═══════ §2 溯源 + 古代数字转换器 ═══════ -->
+<section class="section">
+  <span class="section-num">§2</span>
+  <h2>五千年长跑 —— 每个文明都在发明自己的数字</h2>
+
+  <p class="ni">从手指到今天的 1, 2, 3，人类走了五千年。每一站都在解决一个实际问题：</p>
+
+  <div class="timeline">
+    <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">📋</div><div class="tli-year">约前3400年</div><div class="tli-label">苏美尔泥板</div><div class="tli-desc">收税要记录——芦苇杆在湿泥上压出楔形记号</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">🏛️</div><div class="tli-year">约前3000年</div><div class="tli-label">埃及象形数字</div><div class="tli-desc">一根竖线=1，脚跟骨=10，绳=100</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">🏗️</div><div class="tli-year">约前2000年</div><div class="tli-label">巴比伦60进制</div><div class="tli-desc">60能被2,3,4,5,6整除——分地分粮最方便</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">🏺</div><div class="tli-year">约前500年</div><div class="tli-label">希腊追问本质</div><div class="tli-desc">不满足于"怎么算"，开始追问"数是什么"</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">🕉️</div><div class="tli-year">约公元500年</div><div class="tli-label">印度发明0</div><div class="tli-desc">"空"也是一个真正的数——这个跳跃等了3000年</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">🕌</div><div class="tli-year">约公元800年</div><div class="tli-label">阿拉伯传递</div><div class="tli-desc">花拉子米把印度数字带给阿拉伯——你用的"阿拉伯数字"其实源于印度</div></div>
+    <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">📖</div><div class="tli-year">公元1202年</div><div class="tli-label">斐波那契引入欧洲</div><div class="tli-desc">《算盘书》让欧洲人第一次见到1-9和0</div></div>
+  </div>
+
+  <!-- ★ 核心互动：古代数字转换器 ★ -->
+  <div class="num-converter">
+    <h3 style="margin-top:0;text-align:center;">🔢 输入一个数字，看看古人怎么写</h3>
+    <p style="text-align:center;font-size:14px;color:var(--ink-light);text-indent:0;margin-bottom:16px">同一个数，不同文明画了完全不同的符号——数字的样子从来不是"理所当然"的</p>
+    <div class="num-input-row">
+      <input type="number" id="numInput" value="7" min="1" max="9999" onchange="convertNum()" oninput="convertNum()">
+      <button onclick="convertNum()">转换</button>
+    </div>
+    <div class="num-results" id="numResults"></div>
+  </div>
+</section>
+
+<!-- ═══════ §3 第一性 + Peano 链条可视化 ═══════ -->
+<section class="section">
+  <span class="section-num">§3</span>
+  <h2>五条规则，定义整个自然数宇宙</h2>
+
+  <p>我们用了很久自然数——但如果有人问你"自然数到底是什么"，你不能说"就是 1,2,3,4..."——这是在举例，不是在<em>定义</em>。</p>
+
+  <p>人类想了五千年才给出答案。看这条链：</p>
+
+  <div class="peano-viz">
+    <div class="peano-chain" id="peanoChain">
+      <div class="peano-node">1</div>
+      <div class="peano-arrow-link">→</div>
+      <div class="peano-node">2</div>
+      <div class="peano-arrow-link">→</div>
+      <div class="peano-node">3</div>
+      <div class="peano-arrow-link">→</div>
+      <div class="peano-dots">···</div>
+    </div>
+    <div class="peano-add">
+      <button onclick="addPeanoNode()">➕ 加一个"下一个"</button>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--ink-light);margin-top:12px;text-indent:0">
+      点击按钮，看看自然数是怎么"长"出来的——每一个数都指向它的"下一个"。这条链永远不会断，也永远不会绕回来。
+    </p>
+  </div>
+
+  <p style="margin-top:20px;">从这条链出发，只需要<strong>五条规则</strong>就能完整定义自然数。不能更少：</p>
+
+  <div class="axiom-grid">
+    <div class="axc"><div class="axc-num">1</div><div class="axc-text"><strong>1 是一个数</strong><span>得有个起点。就像跑步要有起跑线。</span></div></div>
+    <div class="axc"><div class="axc-num">2</div><div class="axc-text"><strong>每个数都有一个"下一个"</strong><span>1→2, 2→3, 3→4…这个"下一个"叫<em>后继</em>。数列永远不会断。</span></div></div>
+    <div class="axc"><div class="axc-num">3</div><div class="axc-text"><strong>1 不是任何数的"下一个"</strong><span>没有比1更小的自然数。这条规则把自然数和分数、负数划清了界限。</span></div></div>
+    <div class="axc"><div class="axc-num">4</div><div class="axc-text"><strong>不同的数，下一个也不同</strong><span>不会出现"3的下一个是4，5的下一个也是4"这种绕回去的情况。数列是一条直线。</span></div></div>
+    <div class="axc"><div class="axc-num">5</div><div class="axc-text"><strong>多米诺规则</strong><span>如果1有某个性质，且"n有这个性质 → n+1也有"——那么<em>所有</em>自然数都有这个性质。就像推倒第一块骨牌，后面的全倒。</span></div></div>
+  </div>
+
+  <p style="color:var(--accent);font-weight:600;font-size:16px;">这就是皮亚诺公理——1889年，意大利数学家皮亚诺用这五条规则，把两千年来"自然数到底是什么"的问题彻底钉死了。减法、加法、乘法、乘方……整个算术大厦建在"下一个"这个最简单不过的动作上。</p>
+</section>
+
+<!-- ═══════ §4 人物 ═══════ -->
+<section class="section">
+  <span class="section-num">§4</span>
+  <h2>那些人 —— 被一个问题困住，不解决睡不着</h2>
+  <p class="ni" style="margin-bottom:20px">数学史不是聪明人的名单。每个名字背后，都是一个被问题卡住的普通人。</p>
+
+  <div class="people-grid">
+    <div class="person">
+      <div class="person-emoji">🔺</div>
+      <div class="person-name">毕达哥拉斯</div>
+      <div class="person-era">约前570–495年 · 古希腊</div>
+      <p class="person-story">相信"万物皆数"——一切都可以用整数和分数解释。然后他的学生发现了 √2——一个<strong>写不成分数</strong>的数。最坚定的信仰被自己的数学亲手推翻。传说这个学生因此被扔进了海里。</p>
+    </div>
+    <div class="person">
+      <div class="person-emoji">📐</div>
+      <div class="person-name">欧几里得</div>
+      <div class="person-era">约前325–265年 · 古希腊</div>
+      <p class="person-story">《几何原本》的作者。有趣的是：他用几何图形来定义数——因为古希腊人不信任"无限"，他们觉得只有看得见的几何图形才可靠。</p>
+    </div>
+    <div class="person">
+      <div class="person-emoji">🔤</div>
+      <div class="person-name">朱塞佩·皮亚诺</div>
+      <div class="person-era">1858–1932 · 意大利</div>
+      <p class="person-story">想把整个数学"翻译成符号"的人。定义了自然数的五条公理后，还发明了一种国际辅助语。他的梦想——所有数学定理像机器一样自动推导——启发了计算机科学。</p>
+    </div>
+    <div class="person">
+      <div class="person-emoji">♾️</div>
+      <div class="person-name">格奥尔格·康托尔</div>
+      <div class="person-era">1845–1918 · 德国</div>
+      <p class="person-story">问了一个"小孩子才会问"的问题：<strong>无穷大还能比大小吗？</strong>答案是能。自然数的无穷大是所有无穷大里最"小"的。为此被嘲笑了一辈子——死后才被公认为天才。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ §5 关系网 ═══════ -->
+<section class="section">
+  <span class="section-num">§5</span>
+  <h2>自然数在数学宇宙中的位置</h2>
+
+  <div class="rel-map">
+    <div class="rel-row">
+      <div class="rel-box hl">自然数 ℕ</div><div class="rel-arr">⊂</div>
+      <div class="rel-box">整数 ℤ</div><div class="rel-arr">⊂</div>
+      <div class="rel-box">有理数 ℚ</div><div class="rel-arr">⊂</div>
+      <div class="rel-box">实数 ℝ</div>
+    </div>
+    <p style="margin-top:14px;font-size:14px;color:var(--ink-light);text-indent:0">自然数是所有数系的根。像一棵树的种子。</p>
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink-light);text-indent:0">
+      <strong>加法</strong> = 后继的重复：3+2 = "3的下一个再下一个" = 5<br>
+      <strong>乘法</strong> = 加法的重复：3×2 = 3加两次 = 6<br>
+      <strong>乘方</strong> = 乘法的重复：3² = 3乘两次 = 9
+    </div>
+    <p style="margin-top:10px;font-size:13px;color:var(--accent-soft);text-indent:0;letter-spacing:1px">整个算术大厦，建在"下一个"这个动作上。</p>
+  </div>
+</section>
+
+<!-- ═══════ §6 亲手试 ═══════ -->
+<section class="section">
+  <span class="section-num">§6</span>
+  <h2>亲手试</h2>
+
+  <div class="try-block">
+    <h3>在泥板上刻一个数</h3>
+    <p style="font-size:13px;color:var(--ink-light);text-indent:0">五千年前的苏美尔人用芦苇杆在湿泥上压出楔形。在下面画一画：</p>
+    <div class="clay">
+      <canvas id="clayCanvas" width="500" height="180"></canvas>
+      <button onclick="clearClay()">🗑️ 清空泥板</button>
+    </div>
+  </div>
+
+  <div class="try-block">
+    <h3>如果 0 从不存在……</h3>
+    <p style="font-size:14px;color:var(--ink-light);text-indent:0">1 − 1 等于什么？</p>
+    <div class="qz-options">
+      <button class="qz-opt" onclick="checkZero(this,true)">等于 0</button>
+      <button class="qz-opt" onclick="checkZero(this,false)">没有答案，这是个无意义的问题</button>
+      <button class="qz-opt" onclick="checkZero(this,false)">等于"无"（但"无"不是一个数）</button>
+    </div>
+    <div class="qz-reveal" id="zeroReveal">
+      ✓ <strong>等于 0。</strong>但关键是：<em>在印度人发明0之前，后两个回答才是当时人类的真实想法。</em>古希腊人说"没有东西怎么可以是数？"古罗马人写"nulla"（没有）——只是一个词，不是数字。印度的天才在于说"空的位置也是一个真正的数"。0不是"没有"——0能做运算。这个跳跃，等了人类三千年。
+    </div>
+  </div>
+
+  <div class="try-block">
+    <h3>希尔伯特旅馆：无穷大 + 1 还等于无穷大？</h3>
+    <p style="font-size:13px;color:var(--ink-light);text-indent:0">想象一家有无穷多房间的旅馆——房间号 1,2,3,4,5...永远排下去。所有房间都满了。来了一位新客人——还能住进去吗？</p>
+    <div class="hotel">
+      <div class="hotel-rooms" id="hotelRooms"></div>
+      <div class="hotel-btns">
+        <button onclick="resetHotel()">🔄 重置（全满）</button>
+        <button onclick="newGuest()">🧑 新客人来了</button>
+      </div>
+      <div class="hotel-status" id="hotelStatus">🏨 满了。但无穷旅馆永远有空房。</div>
+    </div>
+    <p style="font-size:14px;color:var(--ink);margin-top:10px;text-indent:0"><strong>答案：能。</strong>把1号客人移到2号，2号移到3号，3号移到4号……1号房空了。无穷大 + 1 = 无穷大。不是"差不多"——<em>一模一样大</em>。</p>
+  </div>
+</section>
+
+<!-- ═══════ §7 更深 ═══════ -->
+<section class="section">
+  <span class="section-num">§7</span>
+  <h2>更深一层</h2>
+  <p class="ni">不要以为"自然数"太简单。恰恰相反——它是数学里谜题最多的地方。</p>
+
+  <div class="further">
+    <details><summary>哥德尔不完备定理：有些关于自然数的事，永远无法被证明</summary>
+    <div class="further-content">
+      <p>1931年，25岁的库尔特·哥德尔证明了一件让人脊背发凉的事：在任何包含自然数的数学系统里，都存在一些<strong>既不能被证明、也不能被推翻的陈述</strong>。不是"我们还没想到办法"——是<strong>原则上就不可能</strong>。即使是最简单的 1, 2, 3, 4…也藏着人类智慧无法穷尽的秘密。数学不是一本已经写完的书。</p>
+    </div></details>
+    <details><summary>黎曼猜想：素数怎么分布？——悬赏100万美元</summary>
+    <div class="further-content">
+      <p><strong>素数</strong>是自然数的"原子"——只能被1和自己整除：2,3,5,7,11,13,17,19…它们怎么分布？为什么有时紧挨着（11和13），有时隔很远（113到127差13个）？1859年黎曼提出一个猜想，165年过去了，没人能证明。克雷研究所悬赏100万美元。而这一切，源于最简单的自然数。</p>
+    </div></details>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <p>数学不是一本已经写完的书。</p>
+  <p>它是一封人类写给自己的信，从五千年写到今天，还没写完。</p>
+  <p class="nav-hint"><a href="../index.html" style="color:inherit;text-decoration:none;">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 下一章：<a href="zero.html" style="color:inherit;">零 —— "没有"怎么可以是一个数？</a></p>
+</footer>
+
+</div><!-- /.manuscript -->
+
+<script>
+// ── Sheep Counter ──
+let sheepN = 0;
+function renderSheep(){
+  const si=document.getElementById('sheepIcons'),fi=document.getElementById('fingerIcons');
+  let sheep='',finger='';
+  for(let i=0;i<sheepN;i++){
+    sheep+='<span class="sheep-icon popping">🐑</span>';
+    finger+='<span class="sheep-icon popping">☝️</span>';
+  }
+  si.innerHTML=sheep;fi.innerHTML=finger;
+  document.getElementById('sheepCount').textContent=sheepN;
+  // Re-trigger animation
+  si.querySelectorAll('.sheep-icon').forEach((el,i)=>{
+    el.classList.remove('popping');void el.offsetWidth;el.classList.add('popping');
+  });
+}
+window.addSheep=function(){
+  sheepN++;renderSheep();
+};
+window.resetSheep=function(){
+  sheepN=0;renderSheep();
+};
+
+// ── Ancient Numeral Converter ──
+const EGYPTIAN={1:'|',10:'∩',100:'𓍢',1000:'𓆼'};
+const EGYPT_ORDER=[1000,100,10,1];
+
+function toEgyptian(n){
+  if(n===0) return '(零——古埃及人还没有"0"的概念)';
+  let r='';
+  for(let o of EGYPT_ORDER){
+    let c=Math.floor(n/o);
+    n%=o;
+    r+=EGYPTIAN[o].repeat(c);
+  }
+  return r;
+}
+
+function toBabylonian(n){
+  if(n===0) return '(零——巴比伦人最早没有0，后来用一个空格代表空位)';
+  if(n>=60){ let hi=Math.floor(n/60),lo=n%60;
+    return '𒐕'.repeat(hi)+' '+'𒐕'.repeat(lo)+' (六十进制: '+hi+'×60 + '+lo+')'; }
+  return '𒐕'.repeat(n);
+}
+
+const ROMAN=[['M',1000],['CM',900],['D',500],['CD',400],['C',100],['XC',90],['L',50],['XL',40],['X',10],['IX',9],['V',5],['IV',4],['I',1]];
+function toRoman(n){
+  if(n===0) return '(罗马人也没有0)';
+  if(n>3999) return '(罗马数字通常只写到3999)';
+  let r='',x=n;
+  for(let [sym,val] of ROMAN){ while(x>=val){r+=sym;x-=val;} }
+  return r;
+}
+
+const CN_DIGITS=['零','一','二','三','四','五','六','七','八','九'];
+const CN_UNITS=['','十','百','千','万'];
+function toChineseNum(n){
+  if(n===0) return '零';
+  let s=n.toString(),r='',len=s.length;
+  for(let i=0;i<len;i++){
+    let d=parseInt(s[i]),u=len-i-1;
+    if(d===0){ if(i<len-1 && s[i+1]!=='0' && r!=='') r+='零'; }
+    else r+=CN_DIGITS[d]+CN_UNITS[u];
+  }
+  if(r.startsWith('一十')) r=r.replace('一十','十');
+  return r;
+}
+
+const MODERN=[[1,'竖线计数'],[2,'古埃及象形'],[3,'巴比伦楔形'],[4,'罗马数字'],[5,'中文数字']];
+function convertNum(){
+  const inp=document.getElementById('numInput'),n=parseInt(inp.value)||0;
+  if(n<0){inp.value=0;return convertNum();}
+  const results=[
+    {name:'用竖线计数（最古老的方式）',display:n===0?'(零没法用竖线表示)' : '|'.repeat(Math.min(n,40))+(n>40?' …('+n+'条竖线)':''), year:'约前40,000年', note:'人类最早的计数方式——一一对应'},
+    {name:'古埃及象形数字',display:toEgyptian(n), year:'约前3,000年', note:'每个数量级用一个不同符号'},
+    {name:'巴比伦楔形数字',display:toBabylonian(n), year:'约前2,000年', note:'60进制——今天的时间和角度仍在使用！'},
+    {name:'罗马数字',display:toRoman(n), year:'约前500年', note:'IV=4, IX=9 ——用减法来缩短写法'},
+    {name:'中文数字',display:toChineseNum(n), year:'约前1,200年', note:'十进制位值系统——每位数有自己的位置'},
+  ];
+  const container=document.getElementById('numResults');
+  container.innerHTML=results.map(r=>`
+    <div class="num-card">
+      <div class="sys-name">${r.name}</div>
+      <div class="sys-display">${r.display}</div>
+      <div class="sys-year">🕐 ${r.year}</div>
+      <div class="sys-note">💡 ${r.note}</div>
+    </div>
+  `).join('');
+}
+
+// ── Peano Chain ──
+let peanoMax=3;
+function renderPeano(){
+  const c=document.getElementById('peanoChain');
+  let h='';
+  for(let i=1;i<=peanoMax;i++){
+    if(i>1) h+='<div class="peano-arrow-link">→</div>';
+    h+=`<div class="peano-node${i>peanoMax-1?' coming':''}">${i}</div>`;
+  }
+  h+='<div class="peano-arrow-link">→</div><div class="peano-dots">···</div>';
+  c.innerHTML=h;
+}
+window.addPeanoNode=function(){
+  peanoMax++;renderPeano();
+};
+
+// ── Clay Tablet ──
+(function(){
+  const canvas=document.getElementById('clayCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let drawing=false;
+  function rc(){
+    const w=Math.min(canvas.parentElement.clientWidth-28,500);
+    canvas.width=w;canvas.height=180;
+    ctx.strokeStyle='#4a3520';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.fillStyle='var(--clay-dark)';
+    ctx.fillRect(0,0,w,180);
+  }
+  rc();window.addEventListener('resize',rc);
+  function gp(e){
+    const r=canvas.getBoundingClientRect();
+    const sx=canvas.width/r.width,sy=canvas.height/r.height;
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    return{x:(cx-r.left)*sx,y:(cy-r.top)*sy};
+  }
+  function sd(e){e.preventDefault();drawing=true;const p=gp(e);ctx.beginPath();ctx.moveTo(p.x,p.y);}
+  function d(e){if(!drawing)return;e.preventDefault();const p=gp(e);ctx.lineTo(p.x,p.y);ctx.stroke();}
+  function ed(){drawing=false;ctx.closePath();}
+  canvas.addEventListener('mousedown',sd);canvas.addEventListener('mousemove',d);
+  canvas.addEventListener('mouseup',ed);canvas.addEventListener('mouseleave',ed);
+  canvas.addEventListener('touchstart',sd,{passive:false});canvas.addEventListener('touchmove',d,{passive:false});
+  canvas.addEventListener('touchend',ed);
+  window.clearClay=function(){const w=canvas.width;ctx.fillStyle='#a8895e';ctx.fillRect(0,0,w,canvas.height);};
+})();
+
+// ── Zero Quiz ──
+window.checkZero=function(btn,correct){
+  const c=btn.closest('.try-block');
+  c.querySelectorAll('.qz-opt').forEach(b=>{b.classList.remove('correct','wrong');b.disabled=true;});
+  btn.disabled=false;
+  if(correct){btn.classList.add('correct');c.querySelector('.qz-reveal').classList.add('show');}
+  else btn.classList.add('wrong');
+};
+
+// ── Hilbert Hotel ──
+const TOTAL=8;let guests=TOTAL;
+function rh(anim){
+  const c=document.getElementById('hotelRooms');
+  let h='';
+  for(let i=1;i<=TOTAL;i++){
+    const occ=i<=guests;
+    h+=`<div class="hotel-room${occ?' occ':''}${anim===i?' moving':''}">${i}</div>`;
+  }
+  c.innerHTML=h;
+  const s=document.getElementById('hotelStatus');
+  s.innerHTML=guests>=TOTAL?'🏨 满了。但无穷旅馆永远有空房。':`🏨 ${TOTAL-guests}间空房。新客人成功入住！`;
+}
+window.resetHotel=function(){guests=TOTAL;rh();};
+window.newGuest=function(){
+  if(guests>=TOTAL){
+    for(let i=TOTAL;i>=1;i--) setTimeout(()=>rh(i),(TOTAL-i)*200);
+    setTimeout(()=>{
+      guests=TOTAL+1;rh();
+      document.getElementById('hotelStatus').innerHTML='✨ 每个人都往右挪一间，1号房空了！∞+1 = ∞';
+    },TOTAL*200+300);
+  }else{guests++;rh();}
+};
+
+// Init
+renderSheep();convertNum();renderPeano();rh();
+</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="theme-color" content="#f8f2e4">
+<title>零 · 数学起源</title>
+<style>
+  :root{--parchment:#f8f2e4;--ink:#2c2416;--ink-light:#5c4a2e;--accent:#8b4513;--accent-soft:#c4956a;--rule:#c4b99a;--highlight:#e8d5b7;--note-bg:#fdf8f0;--shadow:rgba(44,36,22,0.08);--green:#4a7c59;--red:#c44;--clay:#c9a87c;--clay-dark:#a8895e}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+  body{background:#e8e0d3;background-image:radial-gradient(ellipse at 20% 50%,rgba(139,69,19,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(139,69,19,0.04) 0%,transparent 50%);font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--ink);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+  .manuscript{max-width:780px;margin:0 auto;padding:56px 40px 72px;background:var(--parchment);background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(180,160,130,0.12) 27px,rgba(180,160,130,0.12) 28px);box-shadow:0 2px 20px var(--shadow);min-height:100vh}
+  .page-header{text-align:center;margin-bottom:44px;padding-bottom:32px;border-bottom:2px solid var(--rule);position:relative}
+  .page-header::after{content:'✦';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 16px;color:var(--accent);font-size:20px}
+  .chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft);margin-bottom:6px}
+  .page-title{font-size:40px;font-weight:700;letter-spacing:4px;margin-bottom:6px}
+  .page-subtitle{font-size:17px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
+  .section{margin:48px 0}.section h2{font-size:24px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--rule);letter-spacing:2px}.section h3{font-size:19px;color:var(--accent);margin:24px 0 12px}p{margin-bottom:12px;text-indent:2em}p.ni{text-indent:0}
+  .hook-box{background:var(--highlight);border-left:5px solid var(--accent);padding:24px 28px;margin:20px 0;font-size:19px;line-height:1.7;border-radius:0 10px 10px 0;text-indent:0;position:relative}
+  .hook-box::before{content:'🤔';position:absolute;top:-14px;left:16px;background:var(--parchment);padding:0 6px}
+  .vis-demo{background:var(--note-bg);border:1px solid var(--rule);border-radius:12px;padding:24px;margin:20px 0;text-align:center}
+  .zero-scale{display:flex;align-items:flex-end;justify-content:center;gap:8px;margin:20px 0;min-height:160px}
+  .zero-bar{width:56px;background:var(--accent);border-radius:6px 6px 0 0;transition:all 0.4s ease;display:flex;align-items:flex-end;justify-content:center;color:var(--parchment);font-weight:700;font-size:14px;padding-bottom:8px;position:relative}
+  .zero-bar.empty{height:0;background:transparent;border:2px dashed var(--rule);border-bottom:none;border-radius:6px 6px 0 0;width:56px}
+  .zero-bar.empty::after{content:'0';position:absolute;bottom:-24px;font-size:18px;color:var(--accent);font-weight:700}
+  .zero-label{font-size:12px;color:var(--ink-light);margin-top:4px}
+  .zero-controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .zero-controls button{padding:10px 22px;background:var(--accent);color:var(--parchment);border:none;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;transition:all 0.2s}
+  .zero-controls button:active{transform:scale(0.96)}
+  .zero-controls button.reset-btn{background:transparent;color:var(--ink-light);border:1px solid var(--rule)}
+  .timeline-compact{display:flex;gap:10px;overflow-x:auto;padding:16px 0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .tc-item{flex:0 0 160px;text-align:center;padding:14px 10px;background:var(--note-bg);border:1px solid var(--rule);border-radius:8px;scroll-snap-align:start}
+  .tc-emoji{font-size:28px;margin-bottom:4px}.tc-year{font-size:11px;color:var(--accent-soft)}.tc-label{font-size:14px;font-weight:700}.tc-desc{font-size:11px;color:var(--ink-light);margin-top:4px}
+  .try-block{background:var(--note-bg);border:1px dashed var(--accent-soft);border-radius:12px;padding:22px;margin:20px 0}
+  .try-block h3{margin-top:0}.try-block h3::before{content:'✋';margin-right:6px}
+  .qz-options{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+  .qz-opt{padding:10px 20px;border:2px solid var(--rule);border-radius:8px;background:var(--parchment);cursor:pointer;font-size:14px;transition:all 0.2s;font-family:inherit}
+  .qz-opt:hover{border-color:var(--accent-soft)}.qz-opt.correct{border-color:var(--green);background:#e8f0e3}.qz-opt.wrong{border-color:var(--red);background:#fce8e8}
+  .qz-reveal{display:none;margin-top:10px;padding:14px;background:#e8f0e3;border-radius:8px;font-size:14px;line-height:1.7;color:#2d4a35}.qz-reveal.show{display:block}
+  .page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:2px solid var(--rule);position:relative}
+  .page-footer::before{content:'❧';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 12px;color:var(--accent-soft);font-size:22px}
+  .page-footer p{font-size:13px;color:var(--ink-light);text-indent:0}
+  .nav-hint{margin-top:12px;font-size:14px;color:var(--accent-soft)}.nav-hint a{color:inherit;text-decoration:none}
+  @media(max-width:768px){.manuscript{padding:32px 18px 48px}.page-title{font-size:28px}.zero-scale{gap:4px}.zero-bar{width:40px}.tc-item{flex:0 0 140px}}
+  @media(max-width:480px){.manuscript{padding:22px 12px}.page-title{font-size:22px}.hook-box{font-size:16px;padding:16px}.qz-options{flex-direction:column}.qz-opt{width:100%;text-align:center}}
+  @media(hover:none) and (pointer:coarse){button,.qz-opt{min-height:44px}}
+</style>
+</head>
+<body>
+<div class="manuscript">
+<header class="page-header"><div class="chapter-num">第二章</div><h1 class="page-title">零</h1><p class="page-subtitle">—— "没有"怎么可以是一个数？</p></header>
+
+<section class="section">
+  <h2>§1 钩子</h2>
+  <div class="hook-box">1 减 1 等于几？你脱口而出"0"。但如果 0 从来没有被发明——这个问题的答案是什么？</div>
+  <p>古希腊人说："这个问题没有答案。因为'没有东西'不是东西。"古罗马人写"nulla"——但只是一个词，不是一个数。中国人用空位表示，但也不认为那是"一个数"。</p>
+  <p>把"什么都没有"当成"一个真正的数"——这个思维跳跃，人类花了<strong>三千年</strong>。</p>
+  <div class="vis-demo">
+    <h3 style="margin-top:0">🎯 0 的位置——在正数和负数之间</h3>
+    <div class="zero-scale" id="zeroScale">
+      <div><div class="zero-bar" style="height:60px">-3</div><div class="zero-label">-3</div></div>
+      <div><div class="zero-bar" style="height:80px">-2</div><div class="zero-label">-2</div></div>
+      <div><div class="zero-bar" style="height:100px">-1</div><div class="zero-label">-1</div></div>
+      <div><div class="zero-bar empty"></div><div class="zero-label" style="color:var(--accent);font-weight:700">0</div></div>
+      <div><div class="zero-bar" style="height:100px">+1</div><div class="zero-label">+1</div></div>
+      <div><div class="zero-bar" style="height:120px">+2</div><div class="zero-label">+2</div></div>
+      <div><div class="zero-bar" style="height:140px">+3</div><div class="zero-label">+3</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--ink-light);text-indent:0;margin-top:8px">0 不是"什么都没有"——它是正数和负数之间的<strong>分界点</strong>。像温度计上的 0°C。</p>
+    <div class="zero-controls">
+      <button onclick="changeTemp(1)">🌡️ 升温</button>
+      <button onclick="changeTemp(-1)">🌡️ 降温</button>
+      <button class="reset-btn" onclick="resetTemp()">归零</button>
+    </div>
+    <p id="tempDisplay" style="font-size:20px;font-weight:700;color:var(--accent);margin-top:8px;text-indent:0">当前温度: 0°C</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>§2 溯源 —— 零的三千年征途</h2>
+  <div class="timeline-compact">
+    <div class="tc-item"><div class="tc-emoji">📋</div><div class="tc-year">约前1700年</div><div class="tc-label">巴比伦空格</div><div class="tc-desc">最早用空格表示"空位"，但不把它当做一个数</div></div>
+    <div class="tc-item"><div class="tc-emoji">🏛️</div><div class="tc-year">约前300年</div><div class="tc-label">希腊拒绝</div><div class="tc-desc">亚里士多德："虚空不存在。"拒绝承认"无"可以是"有"</div></div>
+    <div class="tc-item"><div class="tc-emoji">🗿</div><div class="tc-year">约前100年</div><div class="tc-label">玛雅零</div><div class="tc-desc">独立发明了零——贝壳形状的符号。但和大洋对岸隔绝，没传出去</div></div>
+    <div class="tc-item"><div class="tc-emoji">🕉️</div><div class="tc-year">约公元500年</div><div class="tc-label">印度发明</div><div class="tc-desc">梵文"śūnya"（空）→ 圆圈符号 0。第一个把零当做真正数字的文明</div></div>
+    <div class="tc-item"><div class="tc-emoji">🕌</div><div class="tc-year">约公元800年</div><div class="tc-label">阿拉伯传承</div><div class="tc-desc">花拉子米用"ṣifr"（空的）→ 英文"zero"的词源</div></div>
+    <div class="tc-item"><div class="tc-emoji">📖</div><div class="tc-year">公元1202年</div><div class="tc-label">传入欧洲</div><div class="tc-desc">斐波那契《算盘书》把0带到欧洲。教会一度禁止使用"阿拉伯数字"</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>§3 第一性 —— 零为什么是革命性的？</h2>
+  <p>零的伟大不在"它表示没有"，而在<strong>它是一个能做运算的数</strong>：</p>
+  <p><strong>加法恒等元：</strong>任何数 + 0 = 那个数本身。0 是加法世界里的"不动点"。</p>
+  <p><strong>乘法的毁灭者：</strong>任何数 × 0 = 0。不管多大的数，碰到 0 就归零。</p>
+  <p><strong>除法的禁区：</strong>任何数 ÷ 0 → 无意义。不是"等于无穷"，是<strong>这个运算本身不合法</strong>。为什么？因为如果 a ÷ 0 = b，那么 b × 0 = a。但任何数 × 0 = 0 ≠ a（除非 a 也是 0）。数学里只有少数几个"禁区"——除以 0 是最著名的一个。</p>
+  <p style="color:var(--accent);font-weight:600;margin-top:16px;">0 是数学里最矛盾的数：它什么都"没有"，却改变了人类能做的一切运算。</p>
+</section>
+
+<section class="section">
+  <h2>§4 人物 —— 婆罗摩笈多</h2>
+  <p class="ni"><strong>婆罗摩笈多</strong>（598–668年，印度）。第一个把零当做完整数字处理的数学家。他在《婆罗摩历算书》中写下了零的运算法则——包括"正数加零等于正数""零减零等于零"。但他也犯了一个著名的错误："零除以零等于零"——这其实是不确定的（后来被证明是未定式）。即使天才也不能一步到位。</p>
+</section>
+
+<section class="section">
+  <h2>§5 关系网</h2>
+  <div class="vis-demo" style="text-align:left">
+    <p style="text-indent:0;font-weight:700">0 在数学宇宙中的多重身份：</p>
+    <p style="text-indent:0;margin:12px 0">🔢 自然数的一部分（现代定义从 0 开始）<br>⚖️ 正数和负数的分界点<br>➕ 加法的恒等元（a + 0 = a）<br>✖️ 乘法的零元（a × 0 = 0）<br>🚫 除法的禁区（a ÷ 0 无意义）<br>📐 数轴的原点——所有数的"家"</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>§6 亲手试</h2>
+  <div class="try-block">
+    <h3>0 的运算挑战</h3>
+    <p style="font-size:14px;color:var(--ink-light);text-indent:0">5 ÷ 0 等于什么？</p>
+    <div class="qz-options">
+      <button class="qz-opt" onclick="qz(this,false)">等于无穷大</button>
+      <button class="qz-opt" onclick="qz(this,true)">没有意义，这个运算不合法</button>
+      <button class="qz-opt" onclick="qz(this,false)">等于 0</button>
+    </div>
+    <div class="qz-reveal" id="qz1">✅ <strong>没有意义。</strong>如果 5÷0=∞，那么 ∞×0 应该等于 5。但任何数 ×0=0 ≠ 5。矛盾。所以除法除以 0 在数学里是未定义运算——不是"我们还没想好答案"，是<strong>逻辑上就不可能有一个一致的答案</strong>。</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>§7 更深一层</h2>
+  <p><strong>0⁰ 等于多少？</strong>这个问题看起来简单，但数学家争论了几百年。有些人说 0⁰=1（因为任何数的 0 次方=1），有些人说 0⁰=0（因为 0 的任何次方=0）。现在大多数数学家认为：0⁰ 在组合数学里取 1 最方便，在分析里则是未定式——要看具体语境。数学不是一个"所有问题都有唯一答案"的地方——有时候连问题本身都要重新理解。</p>
+</section>
+
+<footer class="page-footer">
+  <p>零不是"什么都没有"。零是一个有性格的数。</p>
+  <p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 下一章：<a href="negative-numbers.html">负数 —— 当"不够减"催生了负数</a></p>
+</footer>
+</div>
+<script>
+function changeTemp(d){let e=document.getElementById('tempDisplay'),v=parseInt(e.textContent.match(/-?\d+/)[0])+d;e.textContent='当前温度: '+v+'°C';e.style.color=v>0?'#c44':v<0?'#48b':'var(--accent)'}
+function resetTemp(){document.getElementById('tempDisplay').textContent='当前温度: 0°C';document.getElementById('tempDisplay').style.color='var(--accent)'}
+function qz(b,c){let p=b.closest('.try-block');p.querySelectorAll('.qz-opt').forEach(o=>{o.classList.remove('correct','wrong');o.disabled=true});b.disabled=false;c?(b.classList.add('correct'),p.querySelector('.qz-reveal').classList.add('show')):b.classList.add('wrong')}
+</script>
+</body>
+</html>

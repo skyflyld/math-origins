@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta name="theme-color" content="#f8f2e4">
+<title>负数 · 数学起源</title>
+<style>:root{--parchment:#f8f2e4;--ink:#2c2416;--ink-light:#5c4a2e;--accent:#8b4513;--accent-soft:#c4956a;--rule:#c4b99a;--highlight:#e8d5b7;--note-bg:#fdf8f0;--shadow:rgba(44,36,22,0.08);--green:#4a7c59;--red:#c44}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{background:#e8e0d3;background-image:radial-gradient(ellipse at 20% 50%,rgba(139,69,19,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(139,69,19,0.04) 0%,transparent 50%);font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--ink);line-height:1.8;font-size:17px;-webkit-font-smoothing:antialiased}
+.manuscript{max-width:780px;margin:0 auto;padding:56px 40px 72px;background:var(--parchment);background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(180,160,130,0.12) 27px,rgba(180,160,130,0.12) 28px);box-shadow:0 2px 20px var(--shadow);min-height:100vh}
+.page-header{text-align:center;margin-bottom:44px;padding-bottom:32px;border-bottom:2px solid var(--rule);position:relative}.page-header::after{content:'✦';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 16px;color:var(--accent);font-size:20px}.chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft)}.page-title{font-size:40px;font-weight:700;letter-spacing:4px;margin-bottom:6px}.page-subtitle{font-size:17px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
+.section{margin:48px 0}.section h2{font-size:24px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--rule);letter-spacing:2px}.section h3{font-size:19px;color:var(--accent);margin:24px 0 12px}p{margin-bottom:12px;text-indent:2em}p.ni{text-indent:0}
+.hook-box{background:var(--highlight);border-left:5px solid var(--accent);padding:24px 28px;margin:20px 0;font-size:19px;line-height:1.7;border-radius:0 10px 10px 0;text-indent:0;position:relative}.hook-box::before{content:'🤔';position:absolute;top:-14px;left:16px;background:var(--parchment);padding:0 6px}
+.vis{background:var(--note-bg);border:1px solid var(--rule);border-radius:12px;padding:24px;margin:20px 0;text-align:center}
+.numline{display:flex;align-items:flex-end;justify-content:center;gap:0;margin:16px 0;position:relative}
+.nl-mark{width:40px;text-align:center;position:relative;padding-top:12px}.nl-mark::before{content:'';position:absolute;top:0;left:50%;width:2px;height:10px;background:var(--rule)}.nl-num{font-size:13px;font-weight:700;color:var(--ink)}.nl-num.neg{color:var(--red)}.nl-num.zero{color:var(--accent)}.nl-num.pos{color:var(--green)}
+.nl-line{position:relative;height:4px;background:var(--rule);margin:8px 0 20px;border-radius:2px}
+.nl-dot{position:absolute;top:-6px;width:16px;height:16px;border-radius:50%;background:var(--accent);transform:translateX(-50%);transition:left 0.5s ease}
+.timeline-compact{display:flex;gap:10px;overflow-x:auto;padding:16px 0;scroll-snap-type:x mandatory}.tc-item{flex:0 0 160px;text-align:center;padding:14px 10px;background:var(--note-bg);border:1px solid var(--rule);border-radius:8px;scroll-snap-align:start}.tc-emoji{font-size:28px}.tc-year{font-size:11px;color:var(--accent-soft)}.tc-label{font-size:14px;font-weight:700}.tc-desc{font-size:11px;color:var(--ink-light)}
+.debt-game{background:var(--note-bg);border:1px solid var(--rule);border-radius:10px;padding:20px;margin:16px 0;text-align:center}
+.debt-balance{font-size:36px;font-weight:700;margin:8px 0;transition:color 0.3s}.debt-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.debt-btns button{padding:10px 20px;border:none;border-radius:8px;font-size:14px;cursor:pointer;font-family:inherit;transition:all 0.2s}.debt-btns button:active{transform:scale(0.96)}.btn-earn{background:var(--green);color:#fff}.btn-spend{background:var(--red);color:#fff}.btn-reset{background:transparent;color:var(--ink-light);border:1px solid var(--rule)}
+.qz-options{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}.qz-opt{padding:10px 20px;border:2px solid var(--rule);border-radius:8px;background:var(--parchment);cursor:pointer;font-size:14px;transition:all 0.2s;font-family:inherit}.qz-opt:hover{border-color:var(--accent-soft)}.qz-opt.good{border-color:var(--green);background:#e8f0e3}.qz-opt.bad{border-color:var(--red);background:#fce8e8}.qz-reveal{display:none;margin-top:10px;padding:14px;background:#e8f0e3;border-radius:8px;font-size:14px;line-height:1.7;color:#2d4a35}.qz-reveal.show{display:block}
+.page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:2px solid var(--rule);position:relative}.page-footer::before{content:'❧';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 12px;color:var(--accent-soft);font-size:22px}.page-footer p{font-size:13px;color:var(--ink-light);text-indent:0}.nav-hint{margin-top:12px;font-size:14px;color:var(--accent-soft)}.nav-hint a{color:inherit;text-decoration:none}
+@media(max-width:768px){.manuscript{padding:32px 18px}.page-title{font-size:28px}.nl-mark{width:30px}.tc-item{flex:0 0 140px}}
+@media(max-width:480px){.manuscript{padding:22px 12px}.page-title{font-size:22px}.debt-btns{flex-direction:column;align-items:center}.debt-btns button{width:100%;max-width:200px}}
+@media(hover:none) and (pointer:coarse){button,.qz-opt{min-height:44px}}</style>
+</head>
+<body>
+<div class="manuscript">
+<header class="page-header"><div class="chapter-num">第三章</div><h1 class="page-title">负数</h1><p class="page-subtitle">—— 当"不够减"催生了负数</p></header>
+
+<section class="section"><h2>§1 钩子</h2>
+<div class="hook-box">你有 3 块钱，想买一个 5 块钱的东西。你缺 2 块。——这"缺的 2 块"是什么？它有名字吗？</div>
+<p>在中国古代，它叫"负"——《九章算术》（约公元 1 世纪）里就记载了负数。但在欧洲，直到 17 世纪，很多数学家还在骂负数是"荒谬的数"、"小于零的数"。笛卡尔叫它"假根"，帕斯卡说"0 减 4 是纯粹的胡说八道"。</p>
+<p><strong>负数花了人类将近两千年才被普遍接受。</strong>不是因为它难算——欠债谁都懂。是因为人们拒绝相信一个数可以"小于零"。</p>
+
+<div class="vis">
+  <h3 style="margin-top:0">🎯 拖动数轴上的点</h3>
+  <div class="nl-line" style="width:100%;margin:24px 0 28px"><div class="nl-dot" id="nlDot" style="left:50%"></div></div>
+  <div class="numline">
+    <div class="nl-mark"><div class="nl-num neg">-5</div></div><div class="nl-mark"><div class="nl-num neg">-4</div></div><div class="nl-mark"><div class="nl-num neg">-3</div></div><div class="nl-mark"><div class="nl-num neg">-2</div></div><div class="nl-mark"><div class="nl-num neg">-1</div></div>
+    <div class="nl-mark"><div class="nl-num zero">0</div></div>
+    <div class="nl-mark"><div class="nl-num pos">+1</div></div><div class="nl-mark"><div class="nl-num pos">+2</div></div><div class="nl-mark"><div class="nl-num pos">+3</div></div><div class="nl-mark"><div class="nl-num pos">+4</div></div><div class="nl-mark"><div class="nl-num pos">+5</div></div>
+  </div>
+  <p id="nlLabel" style="font-size:18px;font-weight:700;color:var(--accent);text-indent:0">当前位置: 0</p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+    <button onclick="moveNL(-1)" style="padding:10px 18px;background:var(--red);color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;font-family:inherit">⬅ 往左</button>
+    <button onclick="moveNL(0)" style="padding:10px 18px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;font-family:inherit">• 归零</button>
+    <button onclick="moveNL(1)" style="padding:10px 18px;background:var(--green);color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;font-family:inherit">往右 ➡</button>
+  </div>
+</div>
+</section>
+
+<section class="section"><h2>§2 溯源</h2>
+<div class="timeline-compact">
+<div class="tc-item"><div class="tc-emoji">🇨🇳</div><div class="tc-year">约公元1世纪</div><div class="tc-label">《九章算术》</div><div class="tc-desc">最早系统使用负数的著作。"正负术"——用红色算筹表示正数，黑色表示负数</div></div>
+<div class="tc-item"><div class="tc-emoji">🏛️</div><div class="tc-year">约公元250年</div><div class="tc-label">丢番图拒绝</div><div class="tc-desc">希腊数学家称负根为"荒谬的"</div></div>
+<div class="tc-item"><div class="tc-emoji">🕌</div><div class="tc-year">约公元800年</div><div class="tc-label">花拉子米</div><div class="tc-desc">承认负数的存在，但避免使用</div></div>
+<div class="tc-item"><div class="tc-emoji">🇮🇳</div><div class="tc-year">约公元600年</div><div class="tc-label">印度接受</div><div class="tc-desc">婆罗摩笈多写下负数的完整运算法则：负×负=正</div></div>
+<div class="tc-item"><div class="tc-emoji">🇪🇺</div><div class="tc-year">17世纪</div><div class="tc-label">欧洲争论</div><div class="tc-desc">笛卡尔叫它"假根"。直到19世纪才被普遍接受</div></div>
+</div>
+</section>
+
+<section class="section"><h2>§3 第一性 —— 负数到底是什么？</h2>
+<p>负数的本质不是"小于零的数"——那是表象。负数的本质是<strong>方向</strong>。</p>
+<p>自然数告诉你"有多少"。负数告诉你"在哪一边"和"往哪个方向"。</p>
+<p>−3 和 3 的"大小"一样——它们到 0 的距离都是 3。区别在于<strong>方向</strong>：一个在 0 的左边，一个在右边。这就是为什么"负负得正"：转一次方向是反方向，再转一次就回来了。</p>
+<p style="color:var(--accent);font-weight:600">负数的发明意味着：数学不再只是"数东西"。数学开始描述"方向"和"关系"。</p>
+</section>
+
+<section class="section"><h2>§4 人物 —— 婆罗摩笈多 & 笛卡尔</h2>
+<p><strong>婆罗摩笈多</strong>（598–668，印度）：写下负数的完整运算法则。"正数×负数=负数""负数×负数=正数"——这些规则他一千四百年前就写清楚了。</p>
+<p><strong>勒内·笛卡尔</strong>（1596–1650，法国）：发明了坐标轴——把正数和负数放在同一条线上，0 在中间。这个简单的想法改变了整个数学。</p>
+</section>
+
+<section class="section"><h2>§5 关系网</h2>
+<div class="vis" style="text-align:left"><p style="text-indent:0;font-weight:700">负数在数学宇宙中：</p><p style="text-indent:0;margin:10px 0">📏 让数轴从单向变成了双向<br>📐 笛卡尔坐标系的基础——没有负数就没有解析几何<br>⚖️ 物理中无处不在：温度、海拔、债务、电荷<br>🔄 "负负得正"是最违反直觉但完全正确的运算规则</p></div>
+</section>
+
+<section class="section"><h2>§6 亲手试 —— 你的账户余额</h2>
+<div class="debt-game"><p style="font-size:14px;color:var(--ink-light);text-indent:0">你有一张存钱卡。赚钱增加余额，花钱减少余额。</p><div class="debt-balance" id="balance" style="color:var(--ink)">💰 0 元</div>
+<div class="debt-btns"><button class="btn-earn" onclick="changeBal(5)">💵 赚 5 元</button><button class="btn-spend" onclick="changeBal(-5)">🛒 花 5 元</button><button class="btn-spend" onclick="changeBal(-10)">🛍️ 花 10 元</button><button class="btn-reset" onclick="resetBal()">归零</button></div>
+<p style="font-size:13px;color:var(--ink-light);text-indent:0;margin-top:10px">试试花到负数——余额变红。负数就是"欠的钱"。</p></div>
+</section>
+
+<section class="section"><h2>§7 更深一层</h2>
+<p>如果自然数×自然数=自然数，那负数×负数为什么等于正数？这不是"规定"——可以从第一性推导：−1 × (1 + (−1)) = −1 × 0 = 0。同时 −1 × 1 + (−1) × (−1) = −1 + (−1) × (−1)。两个结果相等 → −1 + (−1) × (−1) = 0 → (−1) × (−1) = 1。数学不是"人规定的"——逻辑链一旦展开，结果只有一种。</p></section>
+
+<footer class="page-footer"><p>负数的故事告诉我们：人类最抗拒的，往往是最自然的。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 下一章：<a href="fractions.html">分数</a></p></footer>
+</div>
+<script>
+let nlPos=5;function moveNL(d){nlPos=Math.max(0,Math.min(10,nlPos+(d>0?1:d<0?-1:d===0?(nlPos=5,0):0)));document.getElementById('nlDot').style.left=(nlPos*10)+'%';let v=nlPos-5,l=document.getElementById('nlLabel');l.textContent='当前位置: '+(v>=0?'+':'')+v;l.style.color=v>0?'var(--green)':v<0?'var(--red)':'var(--accent)'}
+let bal=0;function changeBal(d){bal+=d;let e=document.getElementById('balance');e.textContent='💰 '+bal+' 元';e.style.color=bal>0?'var(--green)':bal<0?'var(--red)':'var(--ink)'}function resetBal(){bal=0;let e=document.getElementById('balance');e.textContent='💰 0 元';e.style.color='var(--ink)'}
+</script>
+</body>
+</html>
