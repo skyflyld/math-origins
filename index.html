@@ -1,294 +1,47 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<meta name="theme-color" content="#fefefe">
-<title>数学起源 · 概念总览</title>
-<style>
-  :root {
-    --bg: #fefefe; --ink: #2c2416; --ink-light: #5c4a2e;
-    --accent: #8b4513; --accent-soft: #c4956a; --rule: #c4b99a;
-    --highlight: #e8d5b7; --note-bg: #fdf8f0; --shadow: rgba(44,36,22,0.08);
-    --l1: #8b4513; --l2: #6b3a2a; --l3: #4a5240; --l4: #3a4a6b;
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
-  body{
-    background:#f5f5f5;
-    
-    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
-    color:var(--ink);line-height:1.8;font-size:17px;
-    -webkit-font-smoothing:antialiased;
-  }
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"><meta name="theme-color" content="#fefefe"><title>数学起源 · 来玩数学！</title>
+<style>:root{--bg:#fefefe;--ink:#1a1a1a;--ink-light:#666;--accent:#ff6b35;--accent2:#ff4d6a;--accent3:#5b8def;--accent4:#3cb371;--rule:#e0e0e0;--shadow:0 4px 24px rgba(0,0,0,.06);--radius:16px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}body{background:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--ink);line-height:1.7;font-size:17px;overflow-x:hidden}
+.hero{text-align:center;padding:60px 20px 40px;background:linear-gradient(135deg,#fefefe 0%,#f0f4ff 50%,#fff5f3 100%);position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(255,107,53,.08) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(91,141,239,.08) 0%,transparent 50%),radial-gradient(circle at 50% 70%,rgba(60,179,113,.06) 0%,transparent 40%)}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:900;background:linear-gradient(135deg,#ff6b35,#ff4d6a,#5b8def,#3cb371);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;letter-spacing:3px}.hero .tag{font-size:16px;color:var(--ink-light);margin-top:10px;font-weight:400;position:relative}.hero .floating{display:flex;justify-content:center;gap:16px;margin-top:16px;font-size:40px;animation:bounce 2.5s ease-in-out infinite;position:relative}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.intro{max-width:700px;margin:0 auto;padding:32px 20px;text-align:center}.intro h2{font-size:24px;font-weight:800;margin-bottom:12px}.intro p{font-size:16px;color:var(--ink-light);line-height:1.8;margin-bottom:8px}
+/* Layer */
+.layer-wrap{max-width:900px;margin:0 auto;padding:0 20px 40px}.layer{margin-bottom:32px}.layer-label{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-left:4px}.layer-label .icon{font-size:28px}.layer-label .name{font-size:20px;font-weight:800}.layer-label .desc{font-size:14px;color:var(--ink-light)}.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card{background:#fff;border-radius:var(--radius);padding:18px 16px;text-decoration:none;color:inherit;transition:all .25s;position:relative;overflow:hidden;border:1px solid #eee;display:flex;flex-direction:column;gap:8px}.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;opacity:0;transition:opacity .3s;border-radius:var(--radius) var(--radius) 0 0}.card.done::before{opacity:1}.card.l1 .card-num{color:var(--accent)}.card.l1::before{background:linear-gradient(90deg,var(--accent),#ff9a56)}.card.l2 .card-num{color:var(--accent2)}.card.l2::before{background:linear-gradient(90deg,var(--accent2),#ff7b93)}.card.l3 .card-num{color:var(--accent3)}.card.l3::before{background:linear-gradient(90deg,var(--accent3),#8ab4f7)}.card.l4 .card-num{color:var(--accent4)}.card.l4::before{background:linear-gradient(90deg,var(--accent4),#6dd5a0)}.card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.1);border-color:transparent}.card:active{transform:scale(.97)}.card-num{font-size:13px;font-weight:800;letter-spacing:2px}.card-emoji{font-size:32px;line-height:1}.card-name{font-size:16px;font-weight:700}.card-tease{font-size:13px;color:var(--ink-light);line-height:1.5}.card-status{font-size:11px;margin-top:2px;color:#3cb371;font-weight:600}
+footer{text-align:center;padding:40px 20px;color:var(--ink-light);font-size:14px}
+@media(max-width:480px){.hero{padding:40px 16px 28px}.card-grid{grid-template-columns:1fr 1fr;gap:8px}.card{padding:14px 10px;gap:4px}.card-emoji{font-size:24px}.card-name{font-size:14px}.card-tease{font-size:11px}}</style></head><body>
+<div class="hero"><h1>数学起源</h1><div class="tag">二十个好玩的探索，发现数字是怎么来的</div><div class="floating">🔢 0️⃣ 🍕 ➖ ✖️ 💥 💎 🐚 ♾️</div></div>
+<div class="intro"><h2>👋 来玩数学！</h2><p>数学不是一本已经写完的书。<br>它是几千年来，无数聪明人留给你的<strong>好玩的谜题和发现</strong>。</p><p>每个关卡里，你会遇到一个有趣的问题——<br>然后自己动手找出答案。不背公式，只玩游戏。</p></div>
 
-  .manuscript{
-    max-width:860px;margin:0 auto;padding:56px 40px 72px;
-    background:var(--bg);
-    
-    box-shadow:0 2px 20px var(--shadow),0 0 0 1px rgba(139,69,19,0.06);
-    min-height:100vh;
-  }
+<div class="layer-wrap">
+<div class="layer"><div class="layer-label"><span class="icon">🔢</span><span class="name">第一关：数字是怎么来的？</span><span class="desc">— 6 个探索</span></div><div class="card-grid">
+<a href="pages/natural-numbers.html" class="card l1 done"><span class="card-num">01</span><span class="card-emoji">🐑</span><span class="card-name">数羊的故事</span><span class="card-tease">没有数字的世界里，你怎么告诉别人你有几只羊？</span><span class="card-status">✅</span></a>
+<a href="pages/zero.html" class="card l1 done"><span class="card-num">02</span><span class="card-emoji">0️⃣</span><span class="card-name">零的诞生</span><span class="card-tease">"什么都没有"怎么变成一个数？印度人想了三千年才搞明白</span><span class="card-status">✅</span></a>
+<a href="pages/negative-numbers.html" class="card l1 done"><span class="card-num">03</span><span class="card-emoji">➖</span><span class="card-name">欠债的数学</span><span class="card-tease">3−5等于什么？古人说"不可能"——直到有人开始记账</span><span class="card-status">✅</span></a>
+<a href="pages/fractions.html" class="card l1 done"><span class="card-num">04</span><span class="card-emoji">🍕</span><span class="card-name">分的魔术</span><span class="card-tease">一块披萨三个人分——你得到的比你想象的多！</span><span class="card-status">✅</span></a>
+<a href="pages/decimals.html" class="card l1 done"><span class="card-num">05</span><span class="card-emoji">🔟</span><span class="card-name">小数点后的世界</span><span class="card-tease">一个小数点，后面可以写一辈子都写不完</span><span class="card-status">✅</span></a>
+<a href="pages/irrational-numbers.html" class="card l1 done"><span class="card-num">06</span><span class="card-emoji">√</span><span class="card-name">一个让数学家跳海的数</span><span class="card-tease">√2 不能写成分数——毕达哥拉斯的学生发现了它，然后……</span><span class="card-status">✅</span></a>
+</div></div>
 
-  .page-header{text-align:center;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--rule);position:relative}
-  .page-header::after{content:'';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 16px;color:var(--accent);font-size:20px}
-  .chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft);margin-bottom:6px}
-  .page-title{font-size:36px;font-weight:900;color:var(--ink);letter-spacing:4px;margin-bottom:6px;background:linear-gradient(135deg,var(--accent),#c0392b,#e67e22);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .page-subtitle{font-size:16px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
-  .page-desc{text-align:center;font-size:14px;color:var(--ink-light);margin:16px auto 0;max-width:500px;text-indent:0}
+<div class="layer"><div class="layer-label"><span class="icon">✖️</span><span class="name">第二关：怎么算？</span><span class="desc">— 5 个探索</span></div><div class="card-grid">
+<a href="pages/addition.html" class="card l2 done"><span class="card-num">07</span><span class="card-emoji">➕</span><span class="card-name">加法的秘密</span><span class="card-tease">"加"就是"往后数"——简单到你觉得我在骗你</span><span class="card-status">✅</span></a>
+<a href="pages/subtraction.html" class="card l2 done"><span class="card-num">08</span><span class="card-emoji">↩️</span><span class="card-name">减法大冒险</span><span class="card-tease">"不够减"怎么办？这件事逼出了数学里最重要的发明</span><span class="card-status">✅</span></a>
+<a href="pages/multiplication.html" class="card l2 done"><span class="card-num">09</span><span class="card-emoji">🏗️</span><span class="card-name">乘法的魔法</span><span class="card-tease">3×4 不只是三四十二——它是一个矩形，一个加速器</span><span class="card-status">✅</span></a>
+<a href="pages/division.html" class="card l2 done"><span class="card-num">10</span><span class="card-emoji">🧩</span><span class="card-name">分不均匀？</span><span class="card-tease">7块糖分给3个人——世界不是总能分干净</span><span class="card-status">✅</span></a>
+<a href="pages/powers.html" class="card l2 done"><span class="card-num">11</span><span class="card-emoji">💥</span><span class="card-name">乘方的威力</span><span class="card-tease">一张纸对折42次，能碰到月亮——你信吗？来试试</span><span class="card-status">✅</span></a>
+</div></div>
 
-  /* Layer sections */
-  .layer{margin:44px 0}
-  .layer-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
-  .layer-num{font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;min-width:80px}
-  .layer-title{font-size:20px;font-weight:600;color:var(--ink)}
-  .layer-sub{font-size:14px;color:var(--ink-light);font-weight:300}
-  .l1 .layer-num{color:var(--l1)}.l1 .layer-header{border-color:rgba(139,69,19,0.3)}
-  .l2 .layer-num{color:var(--l2)}.l2 .layer-header{border-color:rgba(107,58,42,0.3)}
-  .l3 .layer-num{color:var(--l3)}.l3 .layer-header{border-color:rgba(74,82,64,0.3)}
-  .l4 .layer-num{color:var(--l4)}.l4 .layer-header{border-color:rgba(58,74,107,0.3)}
+<div class="layer"><div class="layer-label"><span class="icon">🔍</span><span class="name">第三关：数字里藏着什么规律？</span><span class="desc">— 5 个探索</span></div><div class="card-grid">
+<a href="pages/primes.html" class="card l3 done"><span class="card-num">12</span><span class="card-emoji">💎</span><span class="card-name">数字的原子</span><span class="card-tease">有些数只能被1和自己整除——它们像原子一样不可拆分</span><span class="card-status">✅</span></a>
+<a href="pages/factors-multiples.html" class="card l3 done"><span class="card-num">13</span><span class="card-emoji">🌳</span><span class="card-name">数的家族树</span><span class="card-tease">每个数都有自己的"爸爸妈妈"和"孩子们"——来找找看</span><span class="card-status">✅</span></a>
+<a href="pages/gcf-lcm.html" class="card l3 done"><span class="card-num">14</span><span class="card-emoji">🧬</span><span class="card-name">共同基因</span><span class="card-tease">12和18有共同的"父母"吗？欧几里得在2300年前就找到了</span><span class="card-status">✅</span></a>
+<a href="pages/sequences.html" class="card l3 done"><span class="card-num">15</span><span class="card-emoji">🐚</span><span class="card-name">兔子的密码</span><span class="card-tease">1,1,2,3,5,8,13…兔子、向日葵和银河系都在用同一个密码</span><span class="card-status">✅</span></a>
+<a href="pages/symmetry.html" class="card l3 done"><span class="card-num">16</span><span class="card-emoji">🦋</span><span class="card-name">为什么世界是对称的？</span><span class="card-tease">从雪花到你的脸——对称是大自然最爱的玩具</span><span class="card-status">✅</span></a>
+</div></div>
 
-  /* Concept cards grid */
-  .concept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-  .concept-card{
-    background:var(--note-bg);border:1px solid var(--rule);border-radius:10px;
-    padding:20px;cursor:pointer;transition:all 0.25s;text-decoration:none;color:inherit;
-    display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
-  }
-  .concept-card:hover{border-color:var(--accent-soft);box-shadow:0 8px 30px rgba(44,36,22,0.12);transform:translateY(-4px)}.concept-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--l1),var(--l2),var(--l3),var(--l4));border-radius:10px 10px 0 0;opacity:0;transition:opacity .3s}.concept-card.done::before{opacity:1}
-  .concept-card:active{transform:scale(0.98)}
-  .concept-card.done{border-color:var(--accent-soft);background:linear-gradient(135deg,var(--note-bg) 0%,rgba(139,69,19,0.06) 100%)}
-  .concept-card.done::after{content:'✅';position:absolute;top:12px;right:14px;font-size:14px}
-  .card-num{font-size:12px;font-weight:700;letter-spacing:2px}
-  .l1 .card-num{color:var(--l1)}.l2 .card-num{color:var(--l2)}
-  .l3 .card-num{color:var(--l3)}.l4 .card-num{color:var(--l4)}
-  .card-emoji{font-size:32px;line-height:1}
-  .card-name{font-size:16px;font-weight:700;color:var(--ink)}
-  .card-hook{font-size:13px;color:var(--ink-light);line-height:1.5;text-indent:0}
-  .card-status{font-size:11px;margin-top:4px}
-  .card-status .ready{color:var(--accent-soft)}
-  .card-status .coming{color:#aaa}
-
-  /* Footer */
-  .page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:1px solid var(--rule);position:relative}
-  .page-footer::before{content:'';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 12px;color:var(--accent-soft);font-size:22px}
-  .page-footer p{font-size:13px;color:var(--ink-light);text-indent:0;margin-bottom:2px}
-
-  /* Responsive */
-  @media(max-width:768px){
-    .manuscript{padding:36px 18px 48px}
-    .page-title{font-size:28px;letter-spacing:2px}
-    .concept-grid{grid-template-columns:1fr;gap:10px}
-    .layer-num{min-width:60px;font-size:11px}
-    .layer-title{font-size:17px}
-  }
-  @media(max-width:480px){
-    .manuscript{padding:24px 12px;box-shadow:none}
-    .page-title{font-size:22px}.page-subtitle{font-size:14px}
-    .concept-card{padding:14px;gap:4px}
-    .card-emoji{font-size:26px}.card-name{font-size:14px}.card-hook{font-size:12px}
-  }
-</style>
-</head>
-<body>
-<div class="manuscript">
-
-<header class="page-header">
-  <div class="chapter-num">数学起源</div>
-  <h1 class="page-title">概念总览</h1>
-  <p class="page-subtitle">—— 二十个概念，一部人类理解"数"的历史</p>
-  <p class="page-desc">数学不是一本已经写完的书。它是一封人类写给自己的信，从五千年前写到现在，还没写完。以下按认知链从根到枝排列——从"数是什么"到"数学本身是什么"。</p>
-</header>
-
-<!-- Layer 1: Numbers -->
-<section class="layer l1">
-  <div class="layer-header">
-    <span class="layer-num">第一层</span>
-    <span class="layer-title">数字本身</span>
-    <span class="layer-sub">— "数是什么？"</span>
-  </div>
-  <div class="concept-grid">
-    <a href="pages/natural-numbers.html" class="concept-card done">
-      <span class="card-num">01</span>
-      <span class="card-emoji">🔢</span>
-      <span class="card-name">自然数</span>
-      <span class="card-hook">如果世界上从来没有数字，你怎么告诉别人你有几只羊？</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/zero.html" class="concept-card done">
-      <span class="card-num">02</span>
-      <span class="card-emoji">0️⃣</span>
-      <span class="card-name">零</span>
-      <span class="card-hook">"没有"怎么可以是一个数？印度人等了人类三千年才回答这个问题</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/negative-numbers.html" class="concept-card done">
-      <span class="card-num">03</span>
-      <span class="card-emoji">➖</span>
-      <span class="card-name">负数</span>
-      <span class="card-hook">3 − 5 等于什么？古人说"这个问题没有意义"——直到有人发现欠债也是"有"</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/fractions.html" class="concept-card done">
-      <span class="card-num">04</span>
-      <span class="card-emoji">🍕</span>
-      <span class="card-name">分数</span>
-      <span class="card-hook">一块饼分给三个人，每个人得到多少？——"分"催生了数学里最优雅的发明</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/decimals.html" class="concept-card done">
-      <span class="card-num">05</span>
-      <span class="card-emoji">🔟</span>
-      <span class="card-name">小数</span>
-      <span class="card-hook">分数的另一种写法，但它的厉害在于：小数点后面可以永远写下去</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/irrational-numbers.html" class="concept-card done">
-      <span class="card-num">06</span>
-      <span class="card-emoji">√</span>
-      <span class="card-name">无理数</span>
-      <span class="card-hook">√2 无法写成分数。毕达哥拉斯的学生发现了它——然后传说被扔进了海里</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-  </div>
-</section>
-
-<!-- Layer 2: Operations -->
-<section class="layer l2">
-  <div class="layer-header">
-    <span class="layer-num">第二层</span>
-    <span class="layer-title">运算</span>
-    <span class="layer-sub">— "怎么算？"</span>
-  </div>
-  <div class="concept-grid">
-    <a href="pages/addition.html" class="concept-card done">
-      <span class="card-num">07</span>
-      <span class="card-emoji">➕</span>
-      <span class="card-name">加法</span>
-      <span class="card-hook">所有运算的妈妈。"加"就是"往后数"——3+2 = 从3开始往后数两个</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/subtraction.html" class="concept-card done">
-      <span class="card-num">08</span>
-      <span class="card-emoji">➖</span>
-      <span class="card-name">减法</span>
-      <span class="card-hook">加法的逆运算。"不够减"这件事逼人类发明了负数和零</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/multiplication.html" class="concept-card done">
-      <span class="card-num">09</span>
-      <span class="card-emoji">✖️</span>
-      <span class="card-name">乘法</span>
-      <span class="card-hook">加法的加速器。3×4 = 3 加自己 4 次——四步并作一步</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/division.html" class="concept-card done">
-      <span class="card-num">10</span>
-      <span class="card-emoji">➗</span>
-      <span class="card-name">除法</span>
-      <span class="card-hook">最叛逆的运算——它告诉你"这个世界不是所有东西都能分干净"</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/powers.html" class="concept-card done">
-      <span class="card-num">11</span>
-      <span class="card-emoji">💥</span>
-      <span class="card-name">乘方</span>
-      <span class="card-hook">乘法的乘法。一张纸对折42次，厚度能到月球——这就是乘方的威力</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-  </div>
-</section>
-
-<!-- Layer 3: Patterns -->
-<section class="layer l3">
-  <div class="layer-header">
-    <span class="layer-num">第三层</span>
-    <span class="layer-title">结构与模式</span>
-    <span class="layer-sub">— "数之间藏着什么规律？"</span>
-  </div>
-  <div class="concept-grid">
-    <a href="pages/primes.html" class="concept-card done">
-      <span class="card-num">12</span>
-      <span class="card-emoji">💎</span>
-      <span class="card-name">素数</span>
-      <span class="card-hook">自然数的"原子"——只能被1和自己整除。它们怎么分布？黎曼猜了165年</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/factors-multiples.html" class="concept-card done">
-      <span class="card-num">13</span>
-      <span class="card-emoji">🌳</span>
-      <span class="card-name">因数与倍数</span>
-      <span class="card-hook">12 的因数有 1,2,3,4,6,12——每个数都是一群数的"孩子"也是一群数的"父母"</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/gcf-lcm.html" class="concept-card done">
-      <span class="card-num">14</span>
-      <span class="card-emoji">🧬</span>
-      <span class="card-name">公因数 & 公倍数</span>
-      <span class="card-hook">两个数的"共同基因"和"共同后代"——通分和约分的幕后英雄</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/sequences.html" class="concept-card done">
-      <span class="card-num">15</span>
-      <span class="card-emoji">🐚</span>
-      <span class="card-name">数列</span>
-      <span class="card-hook">1,1,2,3,5,8,13… 斐波那契在兔子里发现了它，后来在向日葵和银河系里都找到了它</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/symmetry.html" class="concept-card done">
-      <span class="card-num">16</span>
-      <span class="card-emoji">🦋</span>
-      <span class="card-name">对称</span>
-      <span class="card-hook">不只是"两边一样"。对称是宇宙最深的语言——从雪花到物理定律</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-  </div>
-</section>
-
-<!-- Layer 4: Foundations -->
-<section class="layer l4">
-  <div class="layer-header">
-    <span class="layer-num">第四层</span>
-    <span class="layer-title">基础与边界</span>
-    <span class="layer-sub">— "数学本身是什么？"</span>
-  </div>
-  <div class="concept-grid">
-    <a href="pages/sets.html" class="concept-card done">
-      <span class="card-num">17</span>
-      <span class="card-emoji">📦</span>
-      <span class="card-name">集合</span>
-      <span class="card-hook">"所有自然数"是一个东西吗？康托尔说"是"——从此人类可以谈论"无穷"本身</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/infinity.html" class="concept-card done">
-      <span class="card-num">18</span>
-      <span class="card-emoji">♾️</span>
-      <span class="card-name">无穷</span>
-      <span class="card-hook">自然数的无穷大和实数的无穷大一样大吗？不一样。无穷大分大小</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/proof.html" class="concept-card done">
-      <span class="card-num">19</span>
-      <span class="card-emoji">🔍</span>
-      <span class="card-name">证明</span>
-      <span class="card-hook">量一千个三角形也不够。数学的"知道"不是"看起来对"，是"不可能不对"</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-    <a href="pages/probability.html" class="concept-card done">
-      <span class="card-num">20</span>
-      <span class="card-emoji">🎲</span>
-      <span class="card-name">概率</span>
-      <span class="card-hook">下一次抛硬币是正面还是反面？你不知道。但抛一万次——你几乎可以确定</span>
-      <span class="card-status"><span class="ready">✅ 已完成</span></span>
-    </a>
-  </div>
-</section>
-
-<footer class="page-footer">
-  <p>二十个概念。二十个起源故事。</p>
-  <p>每个故事按同一骨架展开：钩子 → 溯源 → 第一性 → 人物 → 关系 → 亲手试 → 更深一层。</p>
-</footer>
-
+<div class="layer"><div class="layer-label"><span class="icon">🚀</span><span class="name">第四关：数学到底有多深？</span><span class="desc">— 4 个探索</span></div><div class="card-grid">
+<a href="pages/sets.html" class="card l4 done"><span class="card-num">17</span><span class="card-emoji">📦</span><span class="card-name">装箱子的游戏</span><span class="card-tease">把东西装进箱子，再把箱子装进更大的箱子——这就是集合</span><span class="card-status">✅</span></a>
+<a href="pages/infinity.html" class="card l4 done"><span class="card-num">18</span><span class="card-emoji">♾️</span><span class="card-name">永远数不完的旅馆</span><span class="card-tease">一个有无穷多房间的旅馆，住满了——还能再住一个吗？</span><span class="card-status">✅</span></a>
+<a href="pages/proof.html" class="card l4 done"><span class="card-num">19</span><span class="card-emoji">🔍</span><span class="card-name">你怎么知道你对？</span><span class="card-tease">量一百个三角形也不够——数学有更好的办法</span><span class="card-status">✅</span></a>
+<a href="pages/probability.html" class="card l4 done"><span class="card-num">20</span><span class="card-emoji">🎲</span><span class="card-name">不确定里的确定</span><span class="card-tease">下一次抛硬币不知道——但抛一万次，就几乎可以确定</span><span class="card-status">✅</span></a>
+</div></div>
 </div>
-</body>
-</html>
+<footer>🎉 全部 20 个探索等你来玩！<br>每个都有小实验、小游戏、小谜题——自己动手，自己发现。</footer>
+</body></html>

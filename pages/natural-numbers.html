@@ -226,20 +226,20 @@
 
 <header class="page-header">
   <div class="chapter-num">第一章</div>
-  <h1 class="page-title">自然数</h1>
-  <p class="page-subtitle">—— 人类最古老的发明，也是最深的谜</p>
+  <h1 class="page-title">数羊的故事</h1>
+  <p class="page-subtitle">—— 来，我们一起发明数字！</p>
 </header>
 
 <!-- ═══════ §1 钩子 + 一一对应动画 ═══════ -->
 <section class="section">
-  <span class="section-num">§1</span>
-  <h2>如果没有数字……</h2>
+  <span class="section-num">🎮 第一关</span>
+  <h2>如果你没有数字……</h2>
 
   <div class="hook-box">
-    如果世界上从来没有 1、2、3，没有任何"数"的概念——你怎么告诉别人你有几只羊？
+    想象你活在五万年前。你养了几只羊。隔壁部落的人问你："你有多少只羊？"<br>没有 1、2、3——你要怎么告诉他？
   </div>
 
-  <p>试试看：点下面的按钮，把羊赶进羊圈。每进来一只羊，用一根手指记数。</p>
+  <p><strong>来试试！</strong>点下面的按钮，把羊赶进羊圈。看看你的手指和羊能不能"一对一"配成对。</p>
 
   <div class="sheep-counter" id="sheepCounter">
     <div class="sheep-col">
@@ -258,17 +258,17 @@
     </div>
   </div>
 
-  <p style="color:var(--accent);font-weight:600;font-size:16px;">这就是"一一对应"——数学里最古老的思想。一只羊 ⇄ 一根手指。两件事物的数量一样多，不是因为它们长得像，而是因为它们能<em>一对一配成对</em>。这个想法，人类在五万年前就会了。</p>
+  <p style="color:var(--accent);font-weight:600;font-size:16px;">你刚刚发明的东西，叫<strong>"一一对应"</strong>。一只羊 ⇄ 一根手指。两堆东西"一样多"，不是因为他们长得像，而是因为能一对一配上对。就是这个简单的想法——人类在五万年前就会了——而它是一切数学的起点。</p>
 
-  <p>后来羊太多了，手指不够用——捡石头、木头上刻凹痕、绳子上打结、泥板上划记号。自然数不是本来就有的，是祖先为了<strong>活下去、分清楚、算明白</strong>一点一点发明出来的。</p>
+  <p>后来羊越来越多，手指不够用了。祖先们开始捡石头、在木头上刻凹痕、在绳子上打结、在泥巴上画记号……<strong>数字不是天上掉下来的。是一代又一代人"不够用了，想个办法"，一点一点造出来的。</strong></p>
 </section>
 
 <!-- ═══════ §2 溯源 + 古代数字转换器 ═══════ -->
 <section class="section">
-  <span class="section-num">§2</span>
-  <h2>五千年长跑 —— 每个文明都在发明自己的数字</h2>
+  <span class="section-num">🗺️ 第二关</span>
+  <h2>五千年前，全世界的人都在"画"数字</h2>
 
-  <p class="ni">从手指到今天的 1, 2, 3，人类走了五千年。每一站都在解决一个实际问题：</p>
+  <p class="ni">从手指到今天的 1,2,3，人类走了五千年。下面这张地图，就是这趟旅程——每一站都在解决一个实际问题：</p>
 
   <div class="timeline">
     <div class="tli"><div class="tli-dot"></div><div class="tli-emoji">📋</div><div class="tli-year">约前3400年</div><div class="tli-label">苏美尔泥板</div><div class="tli-desc">收税要记录——芦苇杆在湿泥上压出楔形记号</div></div>
@@ -294,12 +294,12 @@
 
 <!-- ═══════ §3 第一性 + Peano 链条可视化 ═══════ -->
 <section class="section">
-  <span class="section-num">§3</span>
-  <h2>五条规则，定义整个自然数宇宙</h2>
+  <span class="section-num">🧱 第三关</span>
+  <h2>只要五条规则——就能造出所有数字</h2>
 
-  <p>我们用了很久自然数——但如果有人问你"自然数到底是什么"，你不能说"就是 1,2,3,4..."——这是在举例，不是在<em>定义</em>。</p>
+  <p>如果有人问你："1, 2, 3, 4, 5... 这些数——<em>到底是什么</em>？"你不能说"就是 1,2,3,4,5..."——你只是在重复它们，不是在<strong>定义</strong>它们。</p>
 
-  <p>人类想了五千年才给出答案。看这条链：</p>
+  <p>这个问题，人类想了整整五千年才回答出来。答案就在下面这条链里：</p>
 
   <div class="peano-viz">
     <div class="peano-chain" id="peanoChain">
@@ -319,7 +319,7 @@
     </p>
   </div>
 
-  <p style="margin-top:20px;">从这条链出发，只需要<strong>五条规则</strong>就能完整定义自然数。不能更少：</p>
+  <p style="margin-top:20px;">从"每个数都有一个下一个"这个最简单的想法出发，只需要<strong>五条规则</strong>，就能定义所有的自然数。一条都不能少：</p>
 
   <div class="axiom-grid">
     <div class="axc"><div class="axc-num">1</div><div class="axc-text"><strong>1 是一个数</strong><span>得有个起点。就像跑步要有起跑线。</span></div></div>
@@ -329,14 +329,14 @@
     <div class="axc"><div class="axc-num">5</div><div class="axc-text"><strong>多米诺规则</strong><span>如果1有某个性质，且"n有这个性质 → n+1也有"——那么<em>所有</em>自然数都有这个性质。就像推倒第一块骨牌，后面的全倒。</span></div></div>
   </div>
 
-  <p style="color:var(--accent);font-weight:600;font-size:16px;">这就是皮亚诺公理——1889年，意大利数学家皮亚诺用这五条规则，把两千年来"自然数到底是什么"的问题彻底钉死了。减法、加法、乘法、乘方……整个算术大厦建在"下一个"这个最简单不过的动作上。</p>
+  <p style="color:var(--accent);font-weight:600;font-size:16px;">1889年，一个意大利数学家想出了这五条规则。他用"每个数都有一个下一个"这个简单到像在说废话的想法，<strong>完整地定义了什么叫自然数</strong>。更厉害的是——整个算术大厦（加法、乘法、乘方……）都建在"下一个"这个动作上面。就像乐高：一块最简单的积木，搭出了整座城堡。</p>
 </section>
 
 <!-- ═══════ §4 人物 ═══════ -->
 <section class="section">
-  <span class="section-num">§4</span>
-  <h2>那些人 —— 被一个问题困住，不解决睡不着</h2>
-  <p class="ni" style="margin-bottom:20px">数学史不是聪明人的名单。每个名字背后，都是一个被问题卡住的普通人。</p>
+  <span class="section-num">👤 第四关</span>
+  <h2>被一个问题"卡住"的人</h2>
+  <p class="ni" style="margin-bottom:20px">数学不是一群天才的名单。每张脸背后，都是一个被一个问题卡住的普通人——不解决就睡不着。</p>
 
   <div class="people-grid">
     <div class="person">
@@ -368,8 +368,8 @@
 
 <!-- ═══════ §5 关系网 ═══════ -->
 <section class="section">
-  <span class="section-num">§5</span>
-  <h2>自然数在数学宇宙中的位置</h2>
+  <span class="section-num">🗺️ 关系网</span>
+  <h2>自然数在这个"数学地图"上的位置</h2>
 
   <div class="rel-map">
     <div class="rel-row">
@@ -390,8 +390,8 @@
 
 <!-- ═══════ §6 亲手试 ═══════ -->
 <section class="section">
-  <span class="section-num">§6</span>
-  <h2>亲手试</h2>
+  <span class="section-num">✋ 自己动手！</span>
+  <h2>来玩几个小实验</h2>
 
   <div class="try-block">
     <h3>在泥板上刻一个数</h3>
@@ -432,9 +432,9 @@
 
 <!-- ═══════ §7 更深 ═══════ -->
 <section class="section">
-  <span class="section-num">§7</span>
-  <h2>更深一层</h2>
-  <p class="ni">不要以为"自然数"太简单。恰恰相反——它是数学里谜题最多的地方。</p>
+  <span class="section-num">🚀 继续探索</span>
+  <h2>还有更深的秘密等你发现</h2>
+  <p class="ni">不要以为"自然数"太简单了你已经全懂了——它其实是数学里藏着最多谜题的地方。</p>
 
   <div class="further">
     <details><summary>哥德尔不完备定理：有些关于自然数的事，永远无法被证明</summary>
@@ -449,9 +449,8 @@
 </section>
 
 <footer class="page-footer">
-  <p>数学不是一本已经写完的书。</p>
-  <p>它是一封人类写给自己的信，从五千年写到今天，还没写完。</p>
-  <p class="nav-hint"><a href="../index.html" style="color:inherit;text-decoration:none;">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 下一章：<a href="zero.html" style="color:inherit;">零 —— "没有"怎么可以是一个数？</a></p>
+  <p>数学不是一本已经写完的书——它是一封人类写给自己的信，从五千年写到今天，还没写完。</p>
+  <p class="nav-hint"><a href="../index.html" style="color:inherit;text-decoration:none;">🏠 返回总览</a> &nbsp;|&nbsp; 📖 下一关：<a href="zero.html" style="color:inherit;">零的诞生 —— "什么都没有"怎么变成了一个数？</a></p>
 </footer>
 
 </div><!-- /.manuscript -->
