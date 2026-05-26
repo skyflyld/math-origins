@@ -5,7 +5,28 @@
 .vc-a{width:140px;height:140px;top:10px;left:30px;background:rgba(139,69,19,0.1);border-color:var(--accent)}
 .vc-b{width:140px;height:140px;top:10px;right:30px;background:rgba(58,90,139,0.1);border-color:var(--blue)}
 .venn-label{position:absolute;font-size:13px;color:var(--ink-light);font-weight:700}
-@media(max-width:768px){.manuscript{padding:32px 18px}.page-title{font-size:28px}.venn-wrap{transform:scale(0.85);margin-left:-10px}}@media(max-width:480px){.manuscript{padding:22px 12px}.page-title{font-size:22px}.venn-wrap{transform:scale(0.65);margin-left:-30px}.qz-options{flex-direction:column}.qz-opt{width:100%}}</style></head><body><div class="manuscript">
+@media(max-width:768px){.manuscript{padding:32px 18px}.page-title{font-size:28px}.venn-wrap{transform:scale(0.85);margin-left:-10px}}@media(max-width:480px){.manuscript{padding:22px 12px}.page-title{font-size:22px}.venn-wrap{transform:scale(0.65);margin-left:-30px}.qz-options{flex-direction:column}.qz-opt{width:100%}}
+  /* ── Scroll Reveal ── */
+  .section{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .section.visible{opacity:1;transform:translateY(0)}
+  .section h2 .step-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px;font-weight:700;flex-shrink:0;margin-right:8px;animation:stepPulse 2s ease-in-out infinite}
+  @keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(139,69,19,.3)}50%{box-shadow:0 0 0 10px rgba(139,69,19,.1)}}
+  /* Quiz feedback */
+  .qz-opt.correct{animation:quizPop .5s ease}
+  .qz-opt.wrong{animation:quizShake .5s ease}
+  @keyframes quizPop{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+  @keyframes quizShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+  /* Feynman tip */
+  .feynman-box{background:#f0f7ff;border:1px solid #c8ddf8;border-radius:12px;padding:16px 20px;margin:20px 0;display:flex;gap:10px;align-items:flex-start;transition:all .25s}
+  .feynman-box:hover{background:#e4f0fc;transform:translateX(4px)}
+  .feynman-box .fb-icon{font-size:20px;flex-shrink:0;padding-top:1px}
+  .feynman-box .fb-text{font-size:14px;color:var(--ink-light);line-height:1.7}
+  .feynman-box .fb-text strong{color:var(--ink)}
+  /* Scroll hint */
+  .scroll-hint{text-align:center;color:var(--ink-light);font-size:13px;margin-top:-8px;margin-bottom:40px;animation:bounceHint 2s ease-in-out infinite}
+  @keyframes bounceHint{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
+
+</style></head><body><div class="manuscript">
 <header class="page-header"><div class="chapter-num">第十七章</div><h1 class="page-title">集合</h1><p class="page-subtitle">—— 数学的"第一块积木"</p></header>
 <section class="section"><h2>§1 钩子</h2><div class="hook-box">"班里戴眼镜的同学"——这是一个集合。"爱吃辣的同学"——这也是一个集合。这两个集合有什么共同成员？有多少人既戴眼镜又爱吃辣？</div><p>集合就是把一些东西"装在一起"给个名字。听起来简单得可笑——但<strong>整个现代数学都是用这个"简单得可笑"的概念从无到有搭建起来的</strong>。数、函数、空间——全部可以通过集合来定义。</p></section>
 <section class="section"><h2>§2 亲手试 —— 韦恩图</h2><div class="vis"><h3 style="margin-top:0">🎯 集合 A 和集合 B</h3><p style="text-indent:0;font-size:14px;color:var(--ink-light)">A = {2, 4, 6, 8, 10}（偶数，不超过10）<br>B = {2, 3, 5, 7}（素数，不超过7）<br>它们的<strong>交集</strong>是？<strong>并集</strong>是？</p><div class="venn-wrap"><div class="venn-circle vc-a" style="padding-top:10px">4, 6<br>8, 10</div><div class="venn-circle vc-b" style="padding-left:10px"><br>3, 5, 7</div><div style="position:absolute;top:68px;left:108px;font-size:13px;font-weight:700;color:var(--accent);background:transparent">2</div><div class="venn-label" style="top:20px;left:12px">A</div><div class="venn-label" style="top:20px;right:82px">B</div></div><div class="qz-options"><button class="qz-opt" onclick="squiz(this,true)">交集 = {2}，并集 = {2,3,4,5,6,7,8,10}</button><button class="qz-opt" onclick="squiz(this,false)">交集 = {2,3}，并集 = 所有12个数</button></div><div class="qz-reveal" id="srez1">✅ 交集 = {2}（只有 2 同时是偶数和素数）。并集 = {2,3,4,5,6,7,8,10}（两个集合所有元素放在一起，去重）。韦恩图的"重叠区"就是交集。</div></div></section>
@@ -17,4 +38,20 @@
 <footer class="page-footer"><p>从空集到整个数学宇宙——集合是第一块积木，也是最后一块基石。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 <a href="infinity.html">无穷</a></p></footer></div>
 <script>function squiz(b,c){let p=b.closest('.vis');p.querySelectorAll('.qz-opt').forEach(o=>{o.classList.remove('good','bad');o.disabled=true});b.disabled=false;c?(b.classList.add('good'),p.querySelector('.qz-reveal').classList.add('show')):b.classList.add('bad')}
 function buildSet(n){let out=document.getElementById('setBuild'),d={0:'<b>0 = ∅</b><br>空集。什么都没有的集合。就像一只空箱子。',1:'<b>1 = {∅}</b><br>一个集合，里面装着空集。注意：它不是空的——它装着一个东西（那个东西恰好是空的）。好比一个书包里装着一个空盒子——书包不是空的。',2:'<b>2 = {∅, {∅}}</b><br>即 {0, 1}。一个集合里有两个东西：空集，和装着空集的集合。',3:'<b>3 = {∅, {∅}, {∅, {∅}}}</b><br>即 {0, 1, 2}。每个自然数 = 所有比它小的自然数的集合。',4:'<b>4 = {0, 1, 2, 3}</b><br>规律出现了：n = {0, 1, 2, ..., n-1}。所有自然数都是用"集合的集合"一层层造出来的。没有任何一个数字是凭空出现的——全是从空集长出来的。'};out.innerHTML=d[n]||''}</script>
+
+<script>
+(function(){
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.15,rootMargin:'-40px'});
+  document.querySelectorAll('.section').forEach(function(el){obs.observe(el);});
+  var obs2=new IntersectionObserver(function(es){
+    es.forEach(function(e,i){
+      if(e.isIntersecting)setTimeout(function(){e.target.classList.add('visible');},i*80);
+    });
+  },{threshold:0.2});
+  document.querySelectorAll('.axc,.person,.try-block,.card').forEach(function(el){obs2.observe(el);});
+})();
+</script>
+
 </body></html>

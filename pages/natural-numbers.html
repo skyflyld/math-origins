@@ -219,16 +219,38 @@
   @media(hover:none) and (pointer:coarse){
     button,.qz-opt,[role=button]{min-height:44px}
   }
+
+  /* ── Scroll Reveal ── */
+  .section{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .section.visible{opacity:1;transform:translateY(0)}
+  .section h2 .step-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px;font-weight:700;flex-shrink:0;margin-right:8px;animation:stepPulse 2s ease-in-out infinite}
+  @keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(139,69,19,.3)}50%{box-shadow:0 0 0 10px rgba(139,69,19,.1)}}
+  /* Quiz feedback */
+  .qz-opt.correct{animation:quizPop .5s ease}
+  .qz-opt.wrong{animation:quizShake .5s ease}
+  @keyframes quizPop{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+  @keyframes quizShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+  /* Feynman tip */
+  .feynman-box{background:#f0f7ff;border:1px solid #c8ddf8;border-radius:12px;padding:16px 20px;margin:20px 0;display:flex;gap:10px;align-items:flex-start;transition:all .25s}
+  .feynman-box:hover{background:#e4f0fc;transform:translateX(4px)}
+  .feynman-box .fb-icon{font-size:20px;flex-shrink:0;padding-top:1px}
+  .feynman-box .fb-text{font-size:14px;color:var(--ink-light);line-height:1.7}
+  .feynman-box .fb-text strong{color:var(--ink)}
+  /* Scroll hint */
+  .scroll-hint{text-align:center;color:var(--ink-light);font-size:13px;margin-top:-8px;margin-bottom:40px;animation:bounceHint 2s ease-in-out infinite}
+  @keyframes bounceHint{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
+
 </style>
 </head>
 <body>
 <div class="manuscript">
 
 <header class="page-header">
-  <div class="chapter-num">第一章</div>
+  <div class="chapter-num">第一关</div>
   <h1 class="page-title">数羊的故事</h1>
   <p class="page-subtitle">—— 来，我们一起发明数字！</p>
 </header>
+<div class="scroll-hint">↓ 往下滚，一步一步来</div>
 
 <!-- ═══════ §1 钩子 + 一一对应动画 ═══════ -->
 <section class="section">
@@ -260,6 +282,8 @@
 
   <p style="color:var(--accent);font-weight:600;font-size:16px;">你刚刚发明的东西，叫<strong>"一一对应"</strong>。一只羊 ⇄ 一根手指。两堆东西"一样多"，不是因为他们长得像，而是因为能一对一配上对。就是这个简单的想法——人类在五万年前就会了——而它是一切数学的起点。</p>
 
+  <div class="feynman-box"><span class="fb-icon">💡</span><div class="fb-text"><strong>用最简单的话讲：</strong>"一样多"的意思不是"看起来一样"——而是"能一个一个地配上对"。三只羊和三根手指，能配上对，所以它们一样多。<br>这个想法太简单了，简单到你不敢相信它居然是整个数学的起点。但最好的想法都是这样——简单到你以为自己也能想出来。</div></div>
+
   <p>后来羊越来越多，手指不够用了。祖先们开始捡石头、在木头上刻凹痕、在绳子上打结、在泥巴上画记号……<strong>数字不是天上掉下来的。是一代又一代人"不够用了，想个办法"，一点一点造出来的。</strong></p>
 </section>
 
@@ -284,6 +308,7 @@
   <div class="num-converter">
     <h3 style="margin-top:0;text-align:center;">🔢 输入一个数字，看看古人怎么写</h3>
     <p style="text-align:center;font-size:14px;color:var(--ink-light);text-indent:0;margin-bottom:16px">同一个数，不同文明画了完全不同的符号——数字的样子从来不是"理所当然"的</p>
+    <div class="feynman-box"><span class="fb-icon">🌍</span><div class="fb-text"><strong>换个说法试试：</strong>你用的"1"不是唯一的写法。一个古埃及人看到你的"7"，完全不知道那是什么意思——他会画两条横线。法国的"7"和中国小学生写的"7"长得也不一样（法国人会在竖笔上加一横）。<br>数字的样子，是每个文明自己"发明"的——就像每个国家发明了自己的语言。</div></div>
     <div class="num-input-row">
       <input type="number" id="numInput" value="7" min="1" max="9999" onchange="convertNum()" oninput="convertNum()">
       <button onclick="convertNum()">转换</button>
@@ -330,6 +355,8 @@
   </div>
 
   <p style="color:var(--accent);font-weight:600;font-size:16px;">1889年，一个意大利数学家想出了这五条规则。他用"每个数都有一个下一个"这个简单到像在说废话的想法，<strong>完整地定义了什么叫自然数</strong>。更厉害的是——整个算术大厦（加法、乘法、乘方……）都建在"下一个"这个动作上面。就像乐高：一块最简单的积木，搭出了整座城堡。</p>
+
+  <div class="feynman-box"><span class="fb-icon">🧒</span><div class="fb-text"><strong>试着给一个8岁的小朋友解释：</strong>"数字1是什么？"<br>你可以说："想象你正在走路。左脚迈出第一步——那就是1。迈第二步是2。第三步是3。每一步都从'上一步'得到。你永远可以再迈一步。"<br>这就是数学里最深刻的一个道理：<strong>复杂的东西可以来自简单的"再做一次"。</strong></div></div>
 </section>
 
 <!-- ═══════ §4 人物 ═══════ -->
@@ -629,5 +656,21 @@ window.newGuest=function(){
 // Init
 renderSheep();convertNum();renderPeano();rh();
 </script>
+
+<script>
+(function(){
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.15,rootMargin:'-40px'});
+  document.querySelectorAll('.section').forEach(function(el){obs.observe(el);});
+  var obs2=new IntersectionObserver(function(es){
+    es.forEach(function(e,i){
+      if(e.isIntersecting)setTimeout(function(){e.target.classList.add('visible');},i*80);
+    });
+  },{threshold:0.2});
+  document.querySelectorAll('.axc,.person,.try-block,.card').forEach(function(el){obs2.observe(el);});
+})();
+</script>
+
 </body>
 </html>

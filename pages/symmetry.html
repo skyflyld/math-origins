@@ -8,7 +8,28 @@ canvas{background:#fff;border:1px solid var(--rule);border-radius:8px;cursor:cro
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
 .rotate-demo{display:flex;align-items:center;justify-content:center;gap:20px;margin:12px 0;flex-wrap:wrap}
 .rot-shape{width:80px;height:80px;transition:all 0.5s;font-size:50px;display:flex;align-items:center;justify-content:center}
-@media(max-width:768px){.manuscript{padding:32px 18px}.page-title{font-size:28px}.symmetry-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.manuscript{padding:22px 12px}.page-title{font-size:22px}.qz-options{flex-direction:column}.qz-opt{width:100%}.symmetry-grid{grid-template-columns:repeat(2,1fr);gap:6px}.sym-shape{height:60px;font-size:28px}}</style></head><body><div class="manuscript">
+@media(max-width:768px){.manuscript{padding:32px 18px}.page-title{font-size:28px}.symmetry-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.manuscript{padding:22px 12px}.page-title{font-size:22px}.qz-options{flex-direction:column}.qz-opt{width:100%}.symmetry-grid{grid-template-columns:repeat(2,1fr);gap:6px}.sym-shape{height:60px;font-size:28px}}
+  /* ── Scroll Reveal ── */
+  .section{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .section.visible{opacity:1;transform:translateY(0)}
+  .section h2 .step-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px;font-weight:700;flex-shrink:0;margin-right:8px;animation:stepPulse 2s ease-in-out infinite}
+  @keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(139,69,19,.3)}50%{box-shadow:0 0 0 10px rgba(139,69,19,.1)}}
+  /* Quiz feedback */
+  .qz-opt.correct{animation:quizPop .5s ease}
+  .qz-opt.wrong{animation:quizShake .5s ease}
+  @keyframes quizPop{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+  @keyframes quizShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+  /* Feynman tip */
+  .feynman-box{background:#f0f7ff;border:1px solid #c8ddf8;border-radius:12px;padding:16px 20px;margin:20px 0;display:flex;gap:10px;align-items:flex-start;transition:all .25s}
+  .feynman-box:hover{background:#e4f0fc;transform:translateX(4px)}
+  .feynman-box .fb-icon{font-size:20px;flex-shrink:0;padding-top:1px}
+  .feynman-box .fb-text{font-size:14px;color:var(--ink-light);line-height:1.7}
+  .feynman-box .fb-text strong{color:var(--ink)}
+  /* Scroll hint */
+  .scroll-hint{text-align:center;color:var(--ink-light);font-size:13px;margin-top:-8px;margin-bottom:40px;animation:bounceHint 2s ease-in-out infinite}
+  @keyframes bounceHint{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
+
+</style></head><body><div class="manuscript">
 <header class="page-header"><div class="chapter-num">第十六章</div><h1 class="page-title">对称</h1><p class="page-subtitle">—— 宇宙最深的语言</p></header>
 <section class="section"><h2>§1 钩子</h2><div class="hook-box">看看你的左手和右手——它们是镜子里的一对。雪花有六重对称。蝴蝶的翅膀。蜂巢的六边形。这世界上几乎所有美丽的东西都离不开"对称"——为什么？</div><p>对称不只是"两边一样好看"——它是大自然最底层的组织原则。<strong>从雪花到银河系，从音乐到物理定律——对称无处不在。</strong></p></section>
 <section class="section"><h2>§2 亲手试 —— 哪条线是真正的对称轴？</h2><div class="vis"><h3 style="margin-top:0">🔍 找出有对称轴的图形</h3><p style="text-indent:0;font-size:14px;color:var(--ink-light)">有些图形有"对称轴"——沿轴对折后两边完全重合。有些没有。点击你认为有对称轴的。</p><div class="symmetry-grid"><div class="sym-shape" onclick="checkSym(this,true)">⬠</div><div class="sym-shape" onclick="checkSym(this,false)">⏃</div><div class="sym-shape" onclick="checkSym(this,false)">🝮</div><div class="sym-shape" onclick="checkSym(this,true)">⬡</div><div class="sym-shape" onclick="checkSym(this,true)">◇</div><div class="sym-shape" onclick="checkSym(this,false)">◪</div></div><p id="symScore" style="font-size:14px;color:var(--accent);text-indent:0;font-weight:600;margin-top:8px">找到: 0/3</p></div></section>
@@ -19,4 +40,20 @@ canvas{background:#fff;border:1px solid var(--rule);border-radius:8px;cursor:cro
 <footer class="page-footer"><p>对称不是装饰——对称是宇宙的语法。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 <a href="sets.html">集合</a></p></footer></div>
 <script>let symFound=0,symTotal=3;
 function checkSym(el,correct){if(el.classList.contains('checked'))return;el.classList.add('checked');if(correct){el.style.background='rgba(74,124,89,0.2)';el.style.borderColor='var(--green)';symFound++}else{el.classList.add('wrong');setTimeout(()=>el.classList.remove('wrong'),400)}document.getElementById('symScore').textContent='找到: '+symFound+'/'+symTotal;if(symFound>=symTotal)document.getElementById('symScore').textContent='🎉 全部找到！五边形、六边形、菱形有对称轴。'}let rot=0;function rotateSquare(){rot=(rot+90)%360;let s=document.getElementById('rotSq');s.style.transform='rotate('+rot+'deg)';document.getElementById('rotDeg').textContent=rot+'°'}function yqz(b,c){let p=b.closest('.vis');p.querySelectorAll('.qz-opt').forEach(o=>{o.classList.remove('good','bad');o.disabled=true});b.disabled=false;c?(b.classList.add('good'),p.querySelector('.qz-reveal').classList.add('show')):b.classList.add('bad')}</script>
+
+<script>
+(function(){
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.15,rootMargin:'-40px'});
+  document.querySelectorAll('.section').forEach(function(el){obs.observe(el);});
+  var obs2=new IntersectionObserver(function(es){
+    es.forEach(function(e,i){
+      if(e.isIntersecting)setTimeout(function(){e.target.classList.add('visible');},i*80);
+    });
+  },{threshold:0.2});
+  document.querySelectorAll('.axc,.person,.try-block,.card').forEach(function(el){obs2.observe(el);});
+})();
+</script>
+
 </body></html>

@@ -9,7 +9,28 @@
 .play-area{text-align:center}.play-input{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0}.play-input input{width:140px;font-size:18px;padding:10px 12px;border:3px solid var(--blue);border-radius:14px;text-align:center;color:var(--accent2);font-weight:700;background:var(--bg);outline:none;font-family:inherit}.play-input input:focus{border-color:var(--purple);box-shadow:0 0 0 4px rgba(52,152,219,.15)}.play-input button{background:var(--blue);color:#fff;border:none;font-size:15px;padding:10px 20px;border-radius:14px;cursor:pointer;font-weight:700;transition:all .15s;font-family:inherit;touch-action:manipulation}.play-input button:active{background:var(--purple);transform:scale(1.05)}.play-result{margin:10px 0;font-size:17px;min-height:30px;font-weight:700}.play-viz{margin:10px 0}.play-bar-container{width:100%;max-width:400px;height:28px;background:#e8d5c4;border-radius:14px;overflow:hidden;margin:0 auto}.play-bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:14px;transition:width .4s ease;width:0%}
 /* Quiz */
 .quiz-area{margin:10px 0}.quiz-q{background:#fff;border-radius:14px;padding:14px;margin:8px 0;border-left:4px solid var(--blue)}.quiz-q .q-text{font-weight:600;margin-bottom:6px;font-size:15px}.quiz-q button{padding:8px 16px;margin:3px;border:2px solid var(--blue);border-radius:18px;background:#fff;color:var(--accent2);cursor:pointer;font-weight:600;font-size:14px;transition:all .15s;font-family:inherit;touch-action:manipulation}.quiz-q button.correct{background:var(--green);color:#fff;border-color:var(--green);animation:popIn .3s}.quiz-q button.wrong{background:#e74c3c;color:#fff;border-color:#e74c3c;animation:shake .3s}.quiz-feedback{font-weight:700;margin-top:6px;min-height:20px;font-size:14px}.quiz-feedback.good{color:var(--green)}.quiz-feedback.bad{color:#e74c3c}@keyframes popIn{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}}
-.page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:1px solid var(--rule);position:relative}.page-footer::before{content:'';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 12px;color:#c4956a;font-size:22px}.page-footer p{font-size:13px;color:var(--ink-light);text-indent:0}.nav-hint{margin-top:12px;font-size:14px;color:#c4956a}.nav-hint a{color:inherit;text-decoration:none}@media(max-width:768px){.manuscript{padding:32px 18px}.hero h1{font-size:28px}.grid-100{width:200px;height:200px}}@media(max-width:480px){.manuscript{padding:22px 12px}.hero h1{font-size:22px}.grid-100{width:170px;height:170px}.pv-table{font-size:11px}.pv-cell{font-size:15px;min-height:38px}}</style></head><body><div class="manuscript">
+.page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:1px solid var(--rule);position:relative}.page-footer::before{content:'';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 12px;color:#c4956a;font-size:22px}.page-footer p{font-size:13px;color:var(--ink-light);text-indent:0}.nav-hint{margin-top:12px;font-size:14px;color:#c4956a}.nav-hint a{color:inherit;text-decoration:none}@media(max-width:768px){.manuscript{padding:32px 18px}.hero h1{font-size:28px}.grid-100{width:200px;height:200px}}@media(max-width:480px){.manuscript{padding:22px 12px}.hero h1{font-size:22px}.grid-100{width:170px;height:170px}.pv-table{font-size:11px}.pv-cell{font-size:15px;min-height:38px}}
+  /* ── Scroll Reveal ── */
+  .section{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .section.visible{opacity:1;transform:translateY(0)}
+  .section h2 .step-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px;font-weight:700;flex-shrink:0;margin-right:8px;animation:stepPulse 2s ease-in-out infinite}
+  @keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(139,69,19,.3)}50%{box-shadow:0 0 0 10px rgba(139,69,19,.1)}}
+  /* Quiz feedback */
+  .qz-opt.correct{animation:quizPop .5s ease}
+  .qz-opt.wrong{animation:quizShake .5s ease}
+  @keyframes quizPop{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+  @keyframes quizShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+  /* Feynman tip */
+  .feynman-box{background:#f0f7ff;border:1px solid #c8ddf8;border-radius:12px;padding:16px 20px;margin:20px 0;display:flex;gap:10px;align-items:flex-start;transition:all .25s}
+  .feynman-box:hover{background:#e4f0fc;transform:translateX(4px)}
+  .feynman-box .fb-icon{font-size:20px;flex-shrink:0;padding-top:1px}
+  .feynman-box .fb-text{font-size:14px;color:var(--ink-light);line-height:1.7}
+  .feynman-box .fb-text strong{color:var(--ink)}
+  /* Scroll hint */
+  .scroll-hint{text-align:center;color:var(--ink-light);font-size:13px;margin-top:-8px;margin-bottom:40px;animation:bounceHint 2s ease-in-out infinite}
+  @keyframes bounceHint{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
+
+</style></head><body><div class="manuscript">
 <div class="hero"><div class="chapter-num">第五章</div><h1>小数</h1><p class="subtitle">—— 小数点后面，可以永远写下去</p><div class="emoji-row">0 . 1 2 5</div></div>
 <section class="section"><h2>§1 钩子</h2><div class="hook-box">0.5 = 1/2，0.25 = 1/4，0.125 = 1/8——小数和分数，说的是完全同一件事。但小数有一个分数望尘莫及的武器：小数点后面可以无限延伸。0.333... 可以永远写下去——这就是循环小数。</div><p>小数不是新东西——它是分数的另一种写法。但<strong>这种写法催生了"无限"的数学直觉</strong>——你可以在小数点后面永远加数字，永远不结束。</p></section>
 <section class="section"><h2>§2 亲手试 —— 百格图</h2><div class="card"><h3 style="margin-top:8px;text-align:center">🟦 每个小格子 = 0.01（百分之一）</h3><p style="text-align:center;text-indent:0;font-size:14px;color:var(--ink-light)">100 个格子 = 1。每个格子是 0.01。点击/拖动涂抹。</p><div class="grid-100" id="grid100"></div><div class="grid-info" id="gridInfo">已填: <strong>0</strong>/100 = <strong>0.00</strong></div></div></section>
@@ -27,4 +48,20 @@ function decodeDecimal(){const v=parseFloat(document.getElementById('decInput').
 function quizBtn(btn,type,qid){const q=btn.closest('.quiz-q');q.querySelectorAll('button').forEach(b=>b.disabled=true);btn.classList.add(type);const fb=q.querySelector('.quiz-feedback');if(type==='correct'){fb.textContent='✅ 正确！';fb.className='quiz-feedback good';if(qid==='q2')fb.textContent='✅ 0.333... = 1/3。三个点是"无限循环"的意思——3会永远重复下去！'}else{fb.textContent='❌ 再想一想...';fb.className='quiz-feedback bad'}}
 decodeDecimal();
 </script>
+
+<script>
+(function(){
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});
+  },{threshold:0.15,rootMargin:'-40px'});
+  document.querySelectorAll('.section').forEach(function(el){obs.observe(el);});
+  var obs2=new IntersectionObserver(function(es){
+    es.forEach(function(e,i){
+      if(e.isIntersecting)setTimeout(function(){e.target.classList.add('visible');},i*80);
+    });
+  },{threshold:0.2});
+  document.querySelectorAll('.axc,.person,.try-block,.card').forEach(function(el){obs2.observe(el);});
+})();
+</script>
+
 </body></html>
