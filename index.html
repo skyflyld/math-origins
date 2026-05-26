@@ -33,7 +33,7 @@
   .page-header{text-align:center;margin-bottom:48px;padding-bottom:32px;border-bottom:2px solid var(--rule);position:relative}
   .page-header::after{content:'✦';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 16px;color:var(--accent);font-size:20px}
   .chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft);margin-bottom:6px}
-  .page-title{font-size:36px;font-weight:700;color:var(--ink);letter-spacing:4px;margin-bottom:6px}
+  .page-title{font-size:36px;font-weight:900;color:var(--ink);letter-spacing:4px;margin-bottom:6px;background:linear-gradient(135deg,var(--accent),#c0392b,#e67e22);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
   .page-subtitle{font-size:16px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
   .page-desc{text-align:center;font-size:14px;color:var(--ink-light);margin:16px auto 0;max-width:500px;text-indent:0}
 
@@ -55,7 +55,7 @@
     padding:20px;cursor:pointer;transition:all 0.25s;text-decoration:none;color:inherit;
     display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
   }
-  .concept-card:hover{border-color:var(--accent-soft);box-shadow:0 6px 18px var(--shadow);transform:translateY(-2px)}
+  .concept-card:hover{border-color:var(--accent-soft);box-shadow:0 8px 30px rgba(44,36,22,0.12);transform:translateY(-4px)}.concept-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--l1),var(--l2),var(--l3),var(--l4));border-radius:10px 10px 0 0;opacity:0;transition:opacity .3s}.concept-card.done::before{opacity:1}
   .concept-card:active{transform:scale(0.98)}
   .concept-card.done{border-color:var(--accent-soft);background:linear-gradient(135deg,var(--note-bg) 0%,rgba(139,69,19,0.06) 100%)}
   .concept-card.done::after{content:'✅';position:absolute;top:12px;right:14px;font-size:14px}
