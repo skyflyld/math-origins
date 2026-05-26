@@ -20,7 +20,7 @@
   body{
     background:#e8e0d3;
     background-image:radial-gradient(ellipse at 20% 50%,rgba(139,69,19,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(139,69,19,0.04) 0%,transparent 50%);
-    font-family:Georgia,'Noto Serif SC','STSong','SimSun',serif;
+    font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
     color:var(--ink);line-height:1.8;font-size:18px;
     -webkit-font-smoothing:antialiased;
   }
@@ -38,11 +38,11 @@
   .page-header::after{content:'✦';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 16px;color:var(--accent);font-size:20px}
   .chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft);margin-bottom:8px;text-transform:uppercase}
   .page-title{font-size:44px;font-weight:700;color:var(--ink);letter-spacing:4px;margin-bottom:8px}
-  .page-subtitle{font-size:18px;color:var(--ink-light);font-style:italic;letter-spacing:2px}
+  .page-subtitle{font-size:18px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
 
   /* Sections */
   .section{margin:56px 0;position:relative}
-  .section-num{position:absolute;left:-68px;top:6px;font-size:13px;color:var(--accent-soft);font-style:italic}
+  .section-num{position:absolute;left:-68px;top:6px;font-size:13px;color:var(--accent-soft);letter-spacing:1px;font-weight:500}
   .section h2{font-size:26px;color:var(--ink);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--rule);letter-spacing:2px;font-weight:600}
   .section h3{font-size:20px;color:var(--accent);margin:28px 0 14px;font-weight:600}
   p{margin-bottom:14px;text-indent:2em}
@@ -80,7 +80,7 @@
   .num-card .sys-name{font-size:13px;color:var(--accent-soft);letter-spacing:2px;margin-bottom:4px}
   .num-card .sys-display{font-size:26px;color:var(--ink);font-weight:700;min-height:40px;display:flex;align-items:center;justify-content:center;word-break:break-all}
   .num-card .sys-year{font-size:11px;color:var(--accent-soft);margin-top:4px}
-  .num-card .sys-note{font-size:12px;color:var(--ink-light);margin-top:2px;font-style:italic}
+  .num-card .sys-note{font-size:12px;color:var(--accent-soft);margin-top:2px}
 
   /* ── VISUAL: Peano Chain ── */
   .peano-viz{background:var(--note-bg);border:1px solid var(--rule);border-radius:12px;padding:24px;margin:24px 0;overflow-x:auto}
@@ -157,7 +157,7 @@
   @keyframes rmShift{50%{transform:translateY(-8px);background:var(--accent-soft)}}
   .hotel-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .hotel-btns button{padding:8px 18px;background:var(--accent);color:var(--parchment);border:none;border-radius:6px;font-size:14px;cursor:pointer;font-family:inherit}
-  .hotel-status{margin-top:10px;font-size:14px;color:var(--ink-light);font-style:italic}
+  .hotel-status{margin-top:10px;font-size:14px;color:var(--ink-light)}
 
   /* Further reading */
   .further{margin:10px 0}
@@ -173,7 +173,7 @@
   .page-footer{text-align:center;margin-top:56px;padding-top:28px;border-top:2px solid var(--rule);position:relative}
   .page-footer::before{content:'❧';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 12px;color:var(--accent-soft);font-size:22px}
   .page-footer p{font-size:14px;color:var(--ink-light);text-indent:0;margin-bottom:2px}
-  .page-footer .nav-hint{margin-top:14px;font-style:italic;color:var(--accent-soft);font-size:14px}
+  .page-footer .nav-hint{margin-top:14px;color:var(--accent-soft);font-size:14px;letter-spacing:1px}
 
   /* Responsive */
   @media(min-width:1401px){.manuscript{max-width:840px;padding:72px 56px 96px}body{font-size:19px}.page-title{font-size:50px}}
@@ -384,7 +384,7 @@
       <strong>乘法</strong> = 加法的重复：3×2 = 3加两次 = 6<br>
       <strong>乘方</strong> = 乘法的重复：3² = 3乘两次 = 9
     </div>
-    <p style="margin-top:10px;font-size:13px;color:var(--accent-soft);text-indent:0;font-style:italic">整个算术大厦，建在"下一个"这个动作上。</p>
+    <p style="margin-top:10px;font-size:13px;color:var(--accent-soft);text-indent:0;letter-spacing:1px">整个算术大厦，建在"下一个"这个动作上。</p>
   </div>
 </section>
 
