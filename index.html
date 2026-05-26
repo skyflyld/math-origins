@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"><meta name="theme-color" content="#0a0a1a"><title>数学起源 · 来玩数学！</title>
-<style>:root{--bg: #12122a;--ink: #ececf8;--ink-light: #b8b8d0;--accent: #f0c040;--accent2:#ff4d6a;--accent3:#5b8def;--accent4:#3cb371;--rule: #2a2a4a;--shadow: rgba(0,0,0,0.4);--radius:16px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}body{background: #0a0a1a;font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--ink);line-height:1.85;font-weight:400;font-weight:400;font-size:18px;overflow-x:hidden}
+<style>:root{--bg: #12122a;--ink: #f5f5ff;--ink-light: #b8b8d0;--accent: #f0c040;--accent2:#ff4d6a;--accent3:#5b8def;--accent4:#3cb371;--rule: #2a2a4a;--shadow: rgba(0,0,0,0.4);--radius:16px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}body{background: #0a0a1a;font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--ink);line-height:1.85;font-weight:400;font-size:clamp(16px,1rem + 0.3vw,18px);overflow-x:hidden}
 .hero{text-align:center;padding:60px 20px 40px;background:linear-gradient(135deg,#12122a 0%,#1a1a3a 50%,#1a122a 100%);position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(255,107,53,.12) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(91,141,239,.12) 0%,transparent 50%),radial-gradient(circle at 50% 70%,rgba(60,179,113,.10) 0%,transparent 40%)}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:900;background:linear-gradient(135deg,#ff6b35,#ff4d6a,#5b8def,#3cb371);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;letter-spacing:3px;word-break:break-word;overflow-wrap:break-word}.hero .tag{font-size:16px;color:var(--ink-light);margin-top:10px;font-weight:400;position:relative}.hero .floating{display:flex;justify-content:center;gap:16px;margin-top:16px;font-size:40px;animation:bounce 2.5s ease-in-out infinite;position:relative}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .intro{max-width:700px;margin:0 auto;padding:32px 20px;text-align:center}.intro h2{font-size:24px;font-weight:800;margin-bottom:12px}.intro p{font-size:16px;color:var(--ink-light);line-height:1.8;margin-bottom:8px}
 /* Layer */
@@ -40,8 +40,8 @@ footer{text-align:center;padding:40px 20px;color:var(--ink-light);font-size:14px
   .card:hover{box-shadow:0 10px 32px rgba(240,192,64,.12),0 0 0 1px var(--accent) !important}
   .metric-card:hover,.num-card:hover{box-shadow:0 8px 30px rgba(240,192,64,.15) !important}
   /* Quiz option glow tracking */
-  .qz-opt{position:relative;overflow:hidden;color:var(--ink)}
-  .qz-opt:hover{border-color:var(--accent);transform:translateX(4px);box-shadow:0 0 16px rgba(240,192,64,.15)}
+  .qz-opt{padding:12px 24px;border:2px solid rgba(240,192,64,0.5);border-radius:10px;background:linear-gradient(135deg,#1e1e44,#16163a);cursor:pointer;font-size:15px;font-weight:500;color:var(--ink);transition:all .2s;font-family:inherit;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .qz-opt:hover{border-color:rgba(240,192,64,0.8);box-shadow:0 0 20px rgba(240,192,64,.2),0 2px 8px rgba(0,0,0,.3);transform:translateX(4px);box-shadow:0 0 16px rgba(240,192,64,.15)}
 
 
   @media(max-width:380px){
@@ -50,11 +50,13 @@ footer{text-align:center;padding:40px 20px;color:var(--ink-light);font-size:14px
     body{font-size:14px}
     .manuscript{padding:14px 8px 30px}.section h2{font-size:16px}
     .hook-box{font-size:14px;padding:10px 12px}
-    .qz-opt{padding:8px 12px;font-size:13px}
+    .qz-opt{padding:12px 24px;border:2px solid rgba(240,192,64,0.5);border-radius:10px;background:linear-gradient(135deg,#1e1e44,#16163a);cursor:pointer;font-size:15px;font-weight:500;color:var(--ink);transition:all .2s;font-family:inherit;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
   }
   /* Heading smoothing */
   h1,h2,h3,.page-title,.hero h1{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
   p:last-child{margin-bottom:0}
+  /* Text shadow for dark bg readability */
+  .manuscript p,.manuscript .hook-box,.manuscript .qz-opt,.manuscript .vis,.manuscript .try-block,.manuscript .feynman-box .fb-text,.manuscript .rel-box,.manuscript .page-subtitle{text-shadow:0 1px 3px rgba(0,0,0,0.3)}
 </style></head><body>
 <div class="hero"><h1>数学起源</h1><div class="tag">二十个好玩的探索，发现数字是怎么来的</div><div class="floating">🔢 0️⃣ 🍕 ➖ ✖️ 💥 💎 🐚 ♾️</div></div>
 <div class="intro"><h2>👋 来玩数学！</h2><p>数学不是一本已经写完的书。<br>它是几千年来，无数聪明人留给你的<strong>好玩的谜题和发现</strong>。</p><p>每个关卡里，你会遇到一个有趣的问题——<br>然后自己动手找出答案。不背公式，只玩游戏。</p></div>
