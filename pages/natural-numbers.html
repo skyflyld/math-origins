@@ -8,7 +8,7 @@
 <style>
   :root {
     --bg: #12122a; --bg-dark: #0a0a1a;
-    --ink: #e8e8f8; --ink-light: #b8b8d0;
+    --ink: #ececf8; --ink-light: #b8b8d0;
     --accent: #f0c040; --accent-soft: #8a7a60;
     --rule: #2a2a4a; --highlight: #1e1e3a;
     --note-bg: #18183a; --shadow: rgba(0,0,0,0.4);
@@ -21,7 +21,7 @@
     background: #0a0a1a;
     
     font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
-    color:var(--ink);line-height:1.85;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:18px;
+    color:var(--ink);line-height:1.85;font-weight:400;font-weight:400;font-weight:400;font-size:18px;
     -webkit-font-smoothing:antialiased;
   }
 
@@ -45,7 +45,7 @@
   .section-num{position:absolute;left:-68px;top:6px;font-size:13px;color:var(--accent-soft);letter-spacing:1px;font-weight:500}
   .section h2{font-size:26px;color:var(--ink);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--rule);letter-spacing:2px;font-weight:600}
   .section h3{font-size:20px;color:var(--accent);margin:28px 0 14px;font-weight:600}
-  p{margin-bottom:14px;text-indent:2em}
+  p{text-indent:1.5em}
   p.ni{text-indent:0}
 
   /* Big question */
@@ -285,6 +285,8 @@
   .qz-opt{position:relative;overflow:hidden}
   .qz-opt:hover{border-color:var(--accent);transform:translateX(4px)}
 
+  /* Heading smoothing */
+  h1,h2,h3,.page-title,.hero h1{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 </style>
 </head>
 <body>
