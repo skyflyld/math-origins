@@ -20,11 +20,11 @@
   @keyframes bounceHint{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
 
 </style></head><body><div class="manuscript">
-<header class="page-header"><div class="chapter-num">第十三章</div><h1 class="page-title">因数与倍数</h1><p class="page-subtitle">—— 数的家族树</p></header>
-<section class="section"><h2>§1 钩子</h2><div class="hook-box">12 能被 1, 2, 3, 4, 6, 12 整除。这些数是 12 的"因数"。反过来，12 是它们的"倍数"。每个数都是一群数的孩子，也是一群数的父母。</div><p>这就像一棵家族树。12 的因数里，<strong>2 和 3 是素数——它们是"不可再分"的父母</strong>。所有合数最终都分解为几个素数因子的乘积。家族树的根永远是素数。这就是<strong>算术基本定理</strong>。</p></section>
+<header class="page-header"><div class="chapter-num">第十三关</div><h1 class="page-title">数的家族树</h1><p class="page-subtitle">—— 每个数都有自己的爸爸妈妈</p></header>
+<section class="section"><h2>🎮 来玩个游戏</h2><div class="hook-box">12 能被 1, 2, 3, 4, 6, 12 整除。这些数是 12 的"因数"。反过来，12 是它们的"倍数"。每个数都是一群数的孩子，也是一群数的父母。</div><p>这就像一棵家族树。12 的因数里，<strong>2 和 3 是素数——它们是"不可再分"的父母</strong>。所有合数最终都分解为几个素数因子的乘积。家族树的根永远是素数。这就是<strong>算术基本定理</strong>。</p></section>
 <section class="section"><h2>§2 亲手试 —— 因数猎人</h2><div class="vis"><h3 style="margin-top:0">🎯 找出 18 的所有因数</h3><p style="text-indent:0;font-size:14px;color:var(--ink-light)">点击下面你认为能整除 18 的数。因数总是成对出现的——找到一对得两颗星。</p><div class="factor-grid" id="factorGrid"></div><p id="factorScore" style="font-size:14px;color:var(--accent);text-indent:0;font-weight:600;margin-top:8px">已找到: 0</p><button onclick="resetFactors()" style="padding:8px 16px;background:var(--accent);color:var(--bg);border:none;border-radius:6px;cursor:pointer;font-family:inherit;margin-top:6px">重新开始</button></div></section>
-<section class="section"><h2>§3 第一性 —— 因数总是成对出现</h2><p><strong>如果 a×b=n，那么 a 和 b 都是 n 的因数。</strong>对于 18：1×18, 2×9, 3×6。找到一端，另一端自动跟进。这也是为什么因数的个数通常是偶数——除非这个数是完全平方数（比如 16，其中 4×4，4 是"自配对"的）。</p></section>
-<section class="section"><h2>§4 完全数 —— 因数求和等于自己</h2><div class="vis"><h3 style="margin-top:0">✨ 完全数</h3><p>6 的因数（不含自己）：1, 2, 3。把它们加起来：<strong>1+2+3=6</strong>。一个数的所有真因数之和等于它本身——这就是"完全数"。</p><p>28 = 1+2+4+7+14。<br>496。8128。33550336……</p><p>目前已知的所有完全数都是偶数——<strong>有没有奇完全数？这是几个世纪未解的谜。</strong></p></div></section>
+<section class="section"><h2>🧱 因数总是成对出现</h2><p><strong>如果 a×b=n，那么 a 和 b 都是 n 的因数。</strong>对于 18：1×18, 2×9, 3×6。找到一端，另一端自动跟进。这也是为什么因数的个数通常是偶数——除非这个数是完全平方数（比如 16，其中 4×4，4 是"自配对"的）。</p></section>
+<section class="section"><h2>🌟 完全数：因数求和等于自己</h2><div class="vis"><h3 style="margin-top:0">✨ 完全数</h3><p>6 的因数（不含自己）：1, 2, 3。把它们加起来：<strong>1+2+3=6</strong>。一个数的所有真因数之和等于它本身——这就是"完全数"。</p><p>28 = 1+2+4+7+14。<br>496。8128。33550336……</p><p>目前已知的所有完全数都是偶数——<strong>有没有奇完全数？这是几个世纪未解的谜。</strong></p></div></section>
 <footer class="page-footer"><p>每个数都不是孤岛——它是一张关系网上的一个节点。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 <a href="gcf-lcm.html">公因数 & 公倍数</a></p></footer></div>
 <script>(function(){let g=document.getElementById('factorGrid'),h='';for(let i=1;i<=20;i++)h+='<div class="factor-num" id="fn'+i+'" onclick="pickFactor('+i+')">'+i+'</div>';g.innerHTML=h})();
 let found=[],answers=[1,2,3,6,9,18];

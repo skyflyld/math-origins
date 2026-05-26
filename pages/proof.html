@@ -22,15 +22,15 @@
   @keyframes bounceHint{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
 
 </style></head><body><div class="manuscript">
-<header class="page-header"><div class="chapter-num">第十九章</div><h1 class="page-title">证明</h1><p class="page-subtitle">—— 数学的"知道"不是"看起来对"</p></header>
-<section class="section"><h2>§1 钩子</h2><div class="hook-box">你量了一万个三角形的内角和，都是 180°。够了吗？不够。第一万零一个可能不是。数学不靠实验——靠证明。证明的意思是：不可能不对。</div><p>这是数学和其他一切科学最根本的区别。物理靠实验——实验一百次都对，第一百零一次可能推翻。数学靠证明——证明通过之后，永远对。不是因为"看起来对"——是<strong>逻辑堵死了所有其他可能</strong>。</p></section>
-<section class="section"><h2>§2 三种证明武器</h2>
+<header class="page-header"><div class="chapter-num">第十九关</div><h1 class="page-title">你怎么知道你对？</h1><p class="page-subtitle">—— 量一万个三角形也不够</p></header>
+<section class="section"><h2>🎮 来玩个游戏</h2><div class="hook-box">你量了一万个三角形的内角和，都是 180°。够了吗？不够。第一万零一个可能不是。数学不靠实验——靠证明。证明的意思是：不可能不对。</div><p>这是数学和其他一切科学最根本的区别。物理靠实验——实验一百次都对，第一百零一次可能推翻。数学靠证明——证明通过之后，永远对。不是因为"看起来对"——是<strong>逻辑堵死了所有其他可能</strong>。</p></section>
+<section class="section"><h2>🗡️ 三种证明武器</h2>
 <div class="proof-type"><h4>🔨 直接证明</h4><p>从已知事实一步一步推出结论。三角形内角和：在顶点画一条和底边平行的线 → 利用"同位角"和"内错角" → 三个角拼成一个平角 = 180°。不需量、不需试、不需相信——从事实自己走出来。</p></div>
 <div class="proof-type"><h4>💥 反证法</h4><p>先假设结论是错的，然后推出一个和已知事实矛盾的结果。√2 是无理数的经典证明：假设 √2 = a/b（最简分数）→ a 是偶数 → b 也是偶数 → 和"最简分数"矛盾。所以 √2 不可能是分数。反证法的妙处在于：它不告诉你什么是对的——它告诉你"如果不是这样，世界会疯掉"。</p></div>
 <div class="proof-type"><h4>🀰 数学归纳法</h4><p>要证明"对所有自然数都成立"。先证明 n=1 成立。再证明：如果 n 成立，则 n+1 一定也成立。就像多米诺骨牌——推倒第一块，所有牌依次倒下。</p></div></section>
 <section class="section"><h2>§3 亲手试 —— 多米诺</h2><div class="vis"><h3 style="margin-top:0">🁫 数学归纳法的比喻</h3><p style="text-indent:0;font-size:14px;color:var(--ink-light)">点击推倒，看 n→n+1→n+2→... 推理如何像多米诺一样传递。</p><div class="domino" id="dominoRow"></div><button onclick="dominoFall()" class="btn-a btn-sm" style="margin:8px">🁫 推倒第一块</button></div></section>
-<section class="section"><h2>§4 亲手试 —— 试证一个定理</h2><div class="vis"><h3 style="margin-top:0;text-align:left">证明：三个连续自然数的和一定能被 3 整除</h3><div class="qz-options"><button class="qz-opt" onclick="pqz(this,false)">= 3n+2（不确定）</button><button class="qz-opt" onclick="pqz(this,true)">= 3n+3 = 3(n+1)（能被3整除）</button></div><div class="qz-reveal" id="pqz1">✅ <strong>n + (n+1) + (n+2) = 3n+3 = 3(n+1)。</strong>提取公因数 3 → 一定是 3 的倍数。用了"直接证明"——设第一个数为 n，代数运算，不依赖任何一个具体例子。证明完成。</div></div></section>
-<section class="section"><h2>§5 更深 —— 无法证明的真相</h2><p>有些数学命题——<strong>无法被证明，也无法被证伪。</strong>哥德尔不完备定理说：任何一个足够强大的数学系统里，都存在一些真命题，无法在系统内部被证明。这不是因为人类不够聪明——这是任何形式系统的内在局限。证明的边界，比数学的边界要窄——总有一些"真"在证明的射程之外。</p></section>
+<section class="section"><h2>✋ 试证一个定理</h2><div class="vis"><h3 style="margin-top:0;text-align:left">证明：三个连续自然数的和一定能被 3 整除</h3><div class="qz-options"><button class="qz-opt" onclick="pqz(this,false)">= 3n+2（不确定）</button><button class="qz-opt" onclick="pqz(this,true)">= 3n+3 = 3(n+1)（能被3整除）</button></div><div class="qz-reveal" id="pqz1">✅ <strong>n + (n+1) + (n+2) = 3n+3 = 3(n+1)。</strong>提取公因数 3 → 一定是 3 的倍数。用了"直接证明"——设第一个数为 n，代数运算，不依赖任何一个具体例子。证明完成。</div></div></section>
+<section class="section"><h2>🚀 无法证明的真相</h2><p>有些数学命题——<strong>无法被证明，也无法被证伪。</strong>哥德尔不完备定理说：任何一个足够强大的数学系统里，都存在一些真命题，无法在系统内部被证明。这不是因为人类不够聪明——这是任何形式系统的内在局限。证明的边界，比数学的边界要窄——总有一些"真"在证明的射程之外。</p></section>
 <footer class="page-footer"><p>证明是数学区别于所有其他科学的标志。不是因为对的多——是因为有办法说"不对"。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 <a href="probability.html">概率</a></p></footer></div>
 <script>(function(){let d=document.getElementById('dominoRow'),h='';for(let i=1;i<=12;i++)h+='<div class="domino-piece" id="dp'+i+'">'+i+'</div>';d.innerHTML=h})();let dpStep=0;function dominoFall(){if(dpStep<12){dpStep++;document.getElementById('dp'+dpStep).classList.add('fall');setTimeout(dominoFall,300)}else{setTimeout(()=>{for(let i=1;i<=12;i++)document.getElementById('dp'+i).classList.remove('fall');dpStep=0},1500)}}function pqz(b,c){let p=b.closest('.vis');p.querySelectorAll('.qz-opt').forEach(o=>{o.classList.remove('good','bad');o.disabled=true});b.disabled=false;c?(b.classList.add('good'),p.querySelector('.qz-reveal').classList.add('show')):b.classList.add('bad')}</script>
 
