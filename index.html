@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"><meta name="theme-color" content="#0a0a1a"><title>数学起源 · 来玩数学！</title>
-<style>:root{--bg: #12122a;--ink: #e8e8f8;--ink-light: #8a8ab0;--accent: #f0c040;--accent2:#ff4d6a;--accent3:#5b8def;--accent4:#3cb371;--rule: #2a2a4a;--shadow: rgba(0,0,0,0.4);--radius:16px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}body{background: #0a0a1a;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--ink);line-height:1.7;font-size:17px;overflow-x:hidden}
+<style>:root{--bg: #12122a;--ink: #e8e8f8;--ink-light: #8a8ab0;--accent: #f0c040;--accent2:#ff4d6a;--accent3:#5b8def;--accent4:#3cb371;--rule: #2a2a4a;--shadow: rgba(0,0,0,0.4);--radius:16px}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}body{background: #0a0a1a;font-family:'Segoe UI',system-ui,-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;color:var(--ink);line-height:1.7;font-size:17px;overflow-x:hidden}
 .hero{text-align:center;padding:60px 20px 40px;background:linear-gradient(135deg,#12122a 0%,#1a1a3a 50%,#1a122a 100%);position:relative;overflow:hidden}.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(255,107,53,.12) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(91,141,239,.12) 0%,transparent 50%),radial-gradient(circle at 50% 70%,rgba(60,179,113,.10) 0%,transparent 40%)}.hero h1{font-size:clamp(28px,5vw,42px);font-weight:900;background:linear-gradient(135deg,#ff6b35,#ff4d6a,#5b8def,#3cb371);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;position:relative;letter-spacing:3px}.hero .tag{font-size:16px;color:var(--ink-light);margin-top:10px;font-weight:400;position:relative}.hero .floating{display:flex;justify-content:center;gap:16px;margin-top:16px;font-size:40px;animation:bounce 2.5s ease-in-out infinite;position:relative}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 .intro{max-width:700px;margin:0 auto;padding:32px 20px;text-align:center}.intro h2{font-size:24px;font-weight:800;margin-bottom:12px}.intro p{font-size:16px;color:var(--ink-light);line-height:1.8;margin-bottom:8px}
 /* Layer */
@@ -26,6 +26,22 @@ footer{text-align:center;padding:40px 20px;color:var(--ink-light);font-size:14px
   /* Scroll hint */
   .scroll-hint{text-align:center;color:var(--ink-light);font-size:13px;margin-top:-8px;margin-bottom:40px;animation:bounceHint 2s ease-in-out infinite}
   @keyframes bounceHint{0%,100%{opacity:.4;transform:translateY(0)}50%{opacity:1;transform:translateY(8px)}}
+
+
+  /* Shimmer gradient title */
+  .page-title,.hero h1{
+    background-size:200% 200% !important;
+    animation:shimmer 4s ease-in-out infinite;
+  }
+  @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+
+  /* Enhanced card hover glow */
+  .card:hover{box-shadow:0 10px 32px rgba(240,192,64,.12),0 0 0 1px var(--accent) !important}
+  .metric-card:hover,.num-card:hover{box-shadow:0 8px 30px rgba(240,192,64,.15) !important}
+  /* Quiz option glow tracking */
+  .qz-opt{position:relative;overflow:hidden}
+  .qz-opt:hover{border-color:var(--accent);transform:translateX(4px)}
 
 </style></head><body>
 <div class="hero"><h1>数学起源</h1><div class="tag">二十个好玩的探索，发现数字是怎么来的</div><div class="floating">🔢 0️⃣ 🍕 ➖ ✖️ 💥 💎 🐚 ♾️</div></div>
@@ -78,6 +94,30 @@ footer{text-align:center;padding:40px 20px;color:var(--ink-light);font-size:14px
     });
   },{threshold:0.2});
   document.querySelectorAll('.axc,.person,.try-block,.card').forEach(function(el){obs2.observe(el);});
+})();
+</script>
+
+
+<script>
+(function(){
+  var symbols=['1','2','3','π','∞','+','×','=','√','∑','∫','0'];
+  var container=document.createElement('div');
+  container.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden';
+  document.body.prepend(container);
+  for(var i=0;i<18;i++){
+    var p=document.createElement('div');
+    p.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    p.style.cssText='position:absolute;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;'+
+      'color:rgba(240,192,64,'+(Math.random()*0.1+0.03)+');font-size:'+(Math.random()*20+12)+'px;'+
+      'animation:mathFloat '+(Math.random()*10+10)+'s linear infinite;'+
+      'animation-delay:'+(Math.random()*8)+'s;opacity:0;';
+    container.appendChild(p);
+  }
+  var style=document.createElement('style');
+  style.textContent='@keyframes mathFloat{0%{transform:translateY(105vh) rotate(0deg);opacity:0}'+
+    '15%{opacity:1}50%{transform:translateY(50vh) rotate(180deg)}85%{opacity:.5}'+
+    '100%{transform:translateY(-10vh) rotate(360deg);opacity:0}}';
+  document.head.appendChild(style);
 })();
 </script>
 
