@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<meta name="theme-color" content="#f8f2e4">
+<meta name="theme-color" content="#fefefe">
 <title>数学起源 · 概念总览</title>
 <style>
   :root {
-    --parchment: #f8f2e4; --ink: #2c2416; --ink-light: #5c4a2e;
+    --bg: #fefefe; --ink: #2c2416; --ink-light: #5c4a2e;
     --accent: #8b4513; --accent-soft: #c4956a; --rule: #c4b99a;
     --highlight: #e8d5b7; --note-bg: #fdf8f0; --shadow: rgba(44,36,22,0.08);
     --l1: #8b4513; --l2: #6b3a2a; --l3: #4a5240; --l4: #3a4a6b;
@@ -15,8 +15,8 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
   body{
-    background:#e8e0d3;
-    background-image:radial-gradient(ellipse at 20% 50%,rgba(139,69,19,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(139,69,19,0.04) 0%,transparent 50%);
+    background:#f5f5f5;
+    
     font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
     color:var(--ink);line-height:1.8;font-size:17px;
     -webkit-font-smoothing:antialiased;
@@ -24,14 +24,14 @@
 
   .manuscript{
     max-width:860px;margin:0 auto;padding:56px 40px 72px;
-    background:var(--parchment);
-    background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(180,160,130,0.12) 27px,rgba(180,160,130,0.12) 28px);
+    background:var(--bg);
+    
     box-shadow:0 2px 20px var(--shadow),0 0 0 1px rgba(139,69,19,0.06);
     min-height:100vh;
   }
 
-  .page-header{text-align:center;margin-bottom:48px;padding-bottom:32px;border-bottom:2px solid var(--rule);position:relative}
-  .page-header::after{content:'✦';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 16px;color:var(--accent);font-size:20px}
+  .page-header{text-align:center;margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--rule);position:relative}
+  .page-header::after{content:'';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 16px;color:var(--accent);font-size:20px}
   .chapter-num{font-size:12px;letter-spacing:5px;color:var(--accent-soft);margin-bottom:6px}
   .page-title{font-size:36px;font-weight:900;color:var(--ink);letter-spacing:4px;margin-bottom:6px;background:linear-gradient(135deg,var(--accent),#c0392b,#e67e22);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
   .page-subtitle{font-size:16px;color:var(--ink-light);letter-spacing:2px;font-weight:300}
@@ -70,13 +70,13 @@
   .card-status .coming{color:#aaa}
 
   /* Footer */
-  .page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:2px solid var(--rule);position:relative}
-  .page-footer::before{content:'❧';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--parchment);padding:0 12px;color:var(--accent-soft);font-size:22px}
+  .page-footer{text-align:center;margin-top:52px;padding-top:24px;border-top:1px solid var(--rule);position:relative}
+  .page-footer::before{content:'';position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 12px;color:var(--accent-soft);font-size:22px}
   .page-footer p{font-size:13px;color:var(--ink-light);text-indent:0;margin-bottom:2px}
 
   /* Responsive */
   @media(max-width:768px){
-    .manuscript{padding:36px 18px 48px;background-image:repeating-linear-gradient(transparent,transparent 24px,rgba(180,160,130,0.10) 24px,rgba(180,160,130,0.10) 25px)}
+    .manuscript{padding:36px 18px 48px}
     .page-title{font-size:28px;letter-spacing:2px}
     .concept-grid{grid-template-columns:1fr;gap:10px}
     .layer-num{min-width:60px;font-size:11px}
