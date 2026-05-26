@@ -4,6 +4,6 @@
 <section class="section"><h2>§2 第一性</h2><p>数列 = 按一定规律排列的一串数。规律叫"通项公式"。等差数列（每次加同样的数）：2,5,8,11... 通项=3n−1。等比数列（每次乘同样的数）：2,6,18,54... 通项=2×3ⁿ⁻¹。斐波那契数列没有简单的"通项公式"——但有一个惊人复杂的公式（比奈公式），里面包含了<strong>黄金比例 φ = (1+√5)/2</strong>。</p></section>
 <section class="section"><h2>§3 亲手试</h2><div class="vis"><h3 style="margin-top:0;text-align:left">1, 4, 9, 16, 25 —— 下一个是？</h3><div class="qz-options"><button class="qz-opt" onclick="sqz(this,false)">30</button><button class="qz-opt" onclick="sqz(this,true)">36</button><button class="qz-opt" onclick="sqz(this,false)">35</button></div><div class="qz-reveal" id="sqz1">✅ <strong>36。</strong>这是平方数列：1², 2², 3², 4², 5², 6²=36。数列的秘密在于——你要找到那个"生成规则"。</div></div></section>
 <section class="section"><h2>§4 更深一层</h2><p>斐波那契数列的相邻两项之比趋近于黄金比例 φ≈1.618。为什么一个关于兔子的数列和"最美比例"有关？这是数学里最迷人的因果链之一：简单的规则 + 反复迭代 → 涌现出意想不到的秩序。</p></section>
-<footer class="page-footer"><p>模式是宇宙的语言——数列是你学习这门语言的第一课。</p><p class="nav-hint"><a href="../index.html">🏠 概念总览</a> &nbsp;|&nbsp; 📖 <a href="symmetry.html">对称</a></p></footer></div>
+<footer class="page-footer"><p>模式是宇宙的语言——数列是你学习这门语言的第一课。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 <a href="symmetry.html">对称</a></p></footer></div>
 <script>function sqz(b,c){let p=b.closest('.vis');p.querySelectorAll('.qz-opt').forEach(o=>{o.classList.remove('good','bad');o.disabled=true});b.disabled=false;c?(b.classList.add('good'),p.querySelector('.qz-reveal').classList.add('show')):b.classList.add('bad')}</script>
 </body></html>

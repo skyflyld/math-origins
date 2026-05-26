@@ -3,6 +3,6 @@
 <section class="section"><h2>§1 钩子</h2><div class="hook-box">看看你的左手和右手——镜子里的一对。雪花有六重对称。蝴蝶的翅膀。蜂巢的六边形。对称不只是"好看"——它是大自然最底层的组织原则。</div><p>在数学里，对称被精确地定义为：<strong>一个变换之后，对象看起来和原来一模一样。</strong>一个正方形旋转 90° 后不变——它有 4 重旋转对称。一面镜子反射之后不变——它有反射对称。对称不是"两边一样"的模糊感觉——它是可以用群论精确描述的数学结构。</p></section>
 <section class="section"><h2>§2 第一性</h2><p>对称 → 群论。所有保持某个对象不变的变换，构成一个"群"。群的运算就是"先做一个变换，再做另一个"。群论是数学里最强大的工具之一——从晶体结构到基本粒子，从魔方解法到宇宙的守恒定律，全是群论在起作用。</p></section>
 <section class="section"><h2>§3 亲手试</h2><div class="vis"><h3 style="margin-top:0;text-align:left">一个等边三角形有几重旋转对称？</h3><div class="qz-options"><button class="qz-opt" onclick="yqz(this,false)">2 重</button><button class="qz-opt" onclick="yqz(this,true)">3 重</button><button class="qz-opt" onclick="yqz(this,false)">6 重</button></div><div class="qz-reveal" id="yqz1">✅ <strong>3 重。</strong>旋转 120°、240°、360°（=0°）后，三角形看起来完全一样。正方形的旋转对称是 4 重（90°, 180°, 270°, 360°）。</div></div></section>
-<footer class="page-footer"><p>对称不是装饰——对称是宇宙的语法。</p><p class="nav-hint"><a href="../index.html">🏠 概念总览</a> &nbsp;|&nbsp; 📖 <a href="sets.html">集合</a></p></footer></div>
+<footer class="page-footer"><p>对称不是装饰——对称是宇宙的语法。</p><p class="nav-hint"><a href="../index.html">🏠 返回概念总览</a> &nbsp;|&nbsp; 📖 <a href="sets.html">集合</a></p></footer></div>
 <script>function yqz(b,c){let p=b.closest('.vis');p.querySelectorAll('.qz-opt').forEach(o=>{o.classList.remove('good','bad');o.disabled=true});b.disabled=false;c?(b.classList.add('good'),p.querySelector('.qz-reveal').classList.add('show')):b.classList.add('bad')}</script>
 </body></html>
